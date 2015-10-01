@@ -1,0 +1,7 @@
+default:
+ - 'copy'
+ - 'sass'
+ - 'postcss'
+ - 'concat'
+ - 'uglify'
+ - 'watch'
