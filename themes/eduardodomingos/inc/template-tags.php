@@ -77,6 +77,43 @@ function eduardodomingos_entry_footer() {
 }
 endif;
 
+if ( ! function_exists( 'eduardodomingos_get_project_type' ) ) :
+/**
+ * Return HTML with formatted project type taxonomy.
+ */
+function eduardodomingos_get_project_type($project_id) {
+    if ( 'project' === get_post_type() ) {
+        $terms_list = get_the_term_list( $project_id, 'project-type', '', esc_html__( ', ', 'eduardodomingos') );
+        if ( $terms_list ) {
+            return sprintf( '<span class="cat-links">' . esc_html__( '%1$sPosted in%2$s %3$s', 'eduardodomingos' ) . '</span>', '<span class="hide">','</span>', $terms_list ); // WPCS: XSS OK.
+        }
+    }
+}
+endif;
+
+if ( ! function_exists( 'eduardodomingos_get_project_date' ) ) :
+/**
+ * Return HTML with formatted project start and end dates.
+ */
+function eduardodomingos_get_project_date($projct_id) {
+    if ( 'project' === get_post_type() ) {
+        $start_date = DateTime::createFromFormat('Ymd', get_field('start_date',$projct_id));
+        $start_date = $start_date->format('M Y');
+        $end_date = DateTime::createFromFormat('Ymd', get_field('end_date',$projct_id));
+        $end_date = $end_date->format('M Y');
+        if ( strcmp($start_date, $end_date) !== 0 ) {
+            // Diferent MY
+            $date = $start_date . ' - ' . $end_date;
+            return sprintf(esc_html__( '%1$sDeveloped between%2$s %3$s', 'eduardodomingos' ), '<span class="hide">','</span>', $date );
+        }
+        else {
+            // Same MY
+            return sprintf(esc_html__( '%1$sDeveloped on%2$s %3$s', 'eduardodomingos' ), '<span class="hide">','</span>', $end_date );
+        }
+    }
+}
+endif;
+
 /**
  * Returns true if a blog has more than 1 category.
  *
