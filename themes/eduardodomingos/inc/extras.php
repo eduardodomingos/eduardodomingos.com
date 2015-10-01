@@ -22,3 +22,14 @@ function eduardodomingos_body_classes( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'eduardodomingos_body_classes' );
+
+/**
+ * Checks if Jetpack Photon module is enabled.
+ *
+ * @return boolean
+ */
+function eduardodomingos_photon_enabled() {
+    if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'photon' ) )
+        return true;
+    return false;
+}
