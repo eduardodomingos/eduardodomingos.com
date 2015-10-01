@@ -1,0 +1,120 @@
+/*------------------------------------*\
+    #GLOBALS
+\*------------------------------------*/
+
+ // Logo
+$logo-width:    48px;
+$logo-height:   48px;
+
+// Containers
+$container-max-width:       540px;
+$container-large-max-width: 990px;
+
+// Cover
+$cover-min-height: 400px;
+$cover-max-height: 500px;
+
+// Radius
+$base-round:    3px;
+
+
+
+
+
+/*------------------------------------*\
+    #COLORS
+\*------------------------------------*/
+ $palettes: (
+    grey: (
+        '900':  #212121,
+        '800':  #424242,
+        '600':  #757575,
+        '500':  #9E9E9E,
+        '300':  #E0E0E0,
+        '200':  #EEEEEE,
+    ),
+    pink: (
+        '500':  #E91E63,
+        '600':  #D81B60,
+    ),
+    green: (
+        '500':  #4CAF50,
+        '100':  #C8E6C9,
+    ),
+);
+
+@function palette($palette, $tone: '500') {
+    @return map-get(map-get($palettes, $palette), $tone);
+}
+
+// Page
+$color-bg: #FFF;
+$color-bg-shaded: palette(grey, '200');
+
+// Text
+$color-text-main: palette(grey, '900');
+$color-text-secondary: palette(grey, '600');
+$color-headings: palette(grey, '800');
+
+// Borders
+$color-border: palette(grey, '300');
+
+// Links
+$color-link: palette(pink, '500');
+$color-link-hover: palette(pink, '600');
+$color-link-secondary: palette(grey, '600');
+$color-link-secondary-hover: palette(grey, '800');
+
+// Buttons
+$color-btn: palette(pink, '500');
+$color-btn-hover: palette(pink, '600');
+
+// Forms
+$color-success: palette(green, '100');
+
+
+
+
+
+/*------------------------------------*\
+    #FONTS
+\*------------------------------------*/
+$font-serif:        'Merriweather', serif;
+$font-sans-serif:   'Open Sans', sans-serif;
+$font-code:         Monaco, Consolas, 'Andale Mono', 'DejaVu Sans Mono', monospace;
+$font-pre:          'Courier 10 Pitch', Courier, monospace;
+
+
+
+
+
+/*------------------------------------*\
+    #INUIT
+\*------------------------------------*/
+
+// Settings
+$inuit-base-text-color: $color-text-main;
+$inuit-base-background-color:   $color-bg;
+
+// Buttons
+$inuit-btn-background:      $color-btn;
+$inuit-btn-radius:          $base-round;
+$inuit-btn-border-width:    2px;
+$inuit-enable-btn--small:   true;
+$inuit-enable-btn--full:    true;
+
+// Layout
+$inuit-enable-layout--middle:   true;
+$inuit-enable-layout--bottom:   true;
+$inuit-enable-layout--large:    true;
+
+// Block
+$inuit-enable-block--flush: true;
+
+// List inline
+$inuit-enable-list-inline--delimited:   true;
+$inuit-list-inline-delimit-character:   "\2022";
+
+// List UI
+$inuit-list-ui-border-color:    $color-border;
+$inuit-enable-list-ui--tiny:    true;

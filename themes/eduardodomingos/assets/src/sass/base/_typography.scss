@@ -1,0 +1,27 @@
+/*------------------------------------*\
+    #TYPOGRAPHY
+\*------------------------------------*/
+
+// Headings
+@include headings() {
+    letter-spacing: -1px;
+    color: $color-headings;
+    > a {
+        color: inherit;
+        text-decoration: underline;
+        @include attention() {
+            text-decoration: underline;
+            color: #000;
+        }
+    }
+}
+
+// Links
+a {
+    color: $color-link;
+    text-decoration: none;
+    transition: all ease 0.2s;
+    @include attention() {
+        text-decoration: underline;
+    }
+}

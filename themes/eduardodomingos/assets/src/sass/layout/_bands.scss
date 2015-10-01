@@ -1,0 +1,23 @@
+/*------------------------------------*\
+    #BANDS
+\*------------------------------------*/
+
+.band {
+    padding-top:    $spacing-unit;
+    padding-bottom: $spacing-unit;
+
+    @include media-query(desk) {
+        padding-top:    $spacing-unit--large;
+        padding-bottom: $spacing-unit--large;
+    }
+
+}
+
+.band--large {
+    padding: $spacing-unit--large;
+}
+
+.band--shaded {
+    background-color: $color-bg-shaded;
+    border-top: 1px solid $color-border;
+}

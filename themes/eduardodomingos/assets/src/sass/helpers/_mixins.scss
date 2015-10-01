@@ -1,0 +1,91 @@
+/*------------------------------------*\
+    #MIXINS
+\*------------------------------------*/
+
+// Apply ‘attention’ styles in one go.
+@mixin attention($self: false) {
+
+    @if($self != false) {
+
+        &,
+        &:hover,
+        &:active,
+        &:focus {
+            @content;
+        }
+
+    }
+
+    @else {
+
+        &:hover,
+        &:active,
+        &:focus {
+            @content;
+        }
+
+    }
+
+}
+
+// Create all specified heading styles in one go.
+@mixin headings($from: 1, $to: 6) {
+
+    %base-heading {
+        @content;
+    }
+
+    @if $from >= 1 and $to <= 6{
+
+        @for $i from $from through $to{
+
+            h#{$i} {
+                @extend %base-heading;
+            }
+
+        }
+
+    }
+
+}
+
+// Apply FontAwesome iconic styles in one go.
+@mixin icon($icon, $padding: 0) {
+    &:before {
+        font-family: 'FontAwesome';
+        font-weight: normal;
+        font-style: normal;
+        display: inline-block;
+        line-height: 1;
+        content: $icon;
+        padding-right: $padding;
+    }
+}
+
+// Align a child element inside a relatively positioned parent.
+@mixin align( $type: "full", $position: absolute ) {
+    position: $position;
+    width: 100%;
+    @if ($type == "horizontal") {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    @elseif ($type == "vertical") {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    @elseif ($type == "full") {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+// Hide elements
+@mixin hide() {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+}

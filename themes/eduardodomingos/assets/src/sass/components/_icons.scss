@@ -1,0 +1,23 @@
+/*------------------------------------*\
+    #ICONS
+\*------------------------------------*/
+
+.icon--facebook {
+    @include icon('\f230');
+}
+
+.icon--twitter {
+    @include icon('\f099');
+}
+
+.icon--dribbble {
+    @include icon('\f17d');
+}
+
+.icon--github {
+    @include icon('\f113');
+}
+
+.icon--linkedin {
+    @include icon('\f0e1');
+}

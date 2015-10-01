@@ -1,0 +1,20 @@
+/*------------------------------------*\
+    #LIST-UI
+\*------------------------------------*/
+
+.list-ui,
+%list-ui {
+    border-top-width: 0;
+
+    >li {
+        padding-left: 0;
+        padding-right: 0;
+        &:first-child {
+            padding-top: 0;
+        }
+        &:last-child {
+            border-bottom-width: 0;
+            padding-bottom: 0;
+        }
+    }
+}

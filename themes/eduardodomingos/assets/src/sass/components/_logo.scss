@@ -1,0 +1,19 @@
+/*------------------------------------*\
+    #LOGO
+\*------------------------------------*/
+
+.logo {
+    .site-header & {
+        float: left;
+        width: $logo-width;
+        height: $logo-height;
+        display: block;
+    }
+
+
+    .logo-fill {
+        .main-nav--clone & {
+            fill: $color-text-main;
+        }
+    }
+}

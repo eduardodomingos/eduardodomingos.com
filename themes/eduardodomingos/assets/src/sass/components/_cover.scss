@@ -1,0 +1,45 @@
+/*------------------------------------*\
+    #COVER
+\*------------------------------------*/
+
+.cover {
+    min-height: $cover-max-height;
+    max-height: $cover-min-height;
+    background-color: #333;
+}
+
+.cover--text-center {
+    text-align: center;
+}
+
+.cover--has-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 1px 1px 5px #333;
+}
+
+    .cover__content {
+        color: #fff;
+        @include align('full');
+    }
+
+        .cover__title {
+            color: #fff;
+            @include font-size(40px);
+
+            & + .cover__tagline {
+                margin-top: - $spacing-unit;
+            }
+        }
+
+        .cover__subtitle {
+            color: #fff;
+            @include font-size(16px);
+            font-weight: normal;
+
+        }
+
+        .cover__text {
+            font-family: $font-serif;
+        }

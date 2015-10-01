@@ -1,0 +1,14 @@
+/*------------------------------------*\
+    #BUTTONS
+\*------------------------------------*/
+
+.btn {
+    font-weight: 700;
+    transition: 0.2s;
+
+    @include attention() {
+        background-color: $color-btn-hover;
+            border-color: $color-btn-hover;
+    }
+
+}

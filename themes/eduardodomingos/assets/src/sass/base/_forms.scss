@@ -1,0 +1,21 @@
+/*------------------------------------*\
+    #FORMS
+\*------------------------------------*/
+
+$input-border-width:    1px;
+$input-border-style:    solid;
+$input-border-color:    $color-border;
+$input-padding:         halve($inuit-base-spacing-unit);
+
+input[type="text"],
+input[type="email"],
+input[type="search"]
+{
+    color: $color-text-main;
+    font: inherit;
+    border: 1px solid $input-border-color;
+    vertical-align: middle;
+    height: double($spacing-unit);
+    padding: 0 $spacing-unit--small;
+    box-sizing: border-box;
+}

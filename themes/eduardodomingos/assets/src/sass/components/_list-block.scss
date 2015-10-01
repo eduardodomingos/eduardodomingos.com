@@ -1,0 +1,19 @@
+/*------------------------------------*\
+    #LIST-BLOCK
+\*------------------------------------*/
+
+.list-block,
+%list-block {
+    >li {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    >li:first-child {
+        padding-top: 0;
+    }
+
+    >li:last-child {
+        padding-bottom: 0;
+    }
+}

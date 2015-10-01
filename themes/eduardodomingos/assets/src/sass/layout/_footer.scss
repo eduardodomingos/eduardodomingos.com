@@ -1,0 +1,15 @@
+/*------------------------------------*\
+    #FOOTER
+\*------------------------------------*/
+
+.site-footer {
+    text-align: center;
+    color: $color-text-secondary;
+    border-top: 1px solid $color-border;
+    a {
+        color: inherit;
+        @include attention() {
+            color: $color-link-secondary-hover;
+        }
+    }
+}

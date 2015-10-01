@@ -1,0 +1,13 @@
+/*------------------------------------*\
+    #HEADINGS
+\*------------------------------------*/
+
+.yolo-heading {
+    @include font-size(14px);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: normal;
+    &:before {
+        content: '//\00A0';
+    }
+}

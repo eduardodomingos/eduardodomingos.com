@@ -1,0 +1,42 @@
+/*------------------------------------*\
+    #ENTRY
+\*------------------------------------*/
+
+.entry-title {
+    @include font-size(30px, 35px);
+    > a {
+        @include attention(true) {
+            text-decoration: none;
+        }
+    }
+}
+
+.entry-meta {
+    @include font-size(14px);
+    color: $color-text-secondary;
+    a {
+        color: $color-link-secondary;
+        @include attention() {
+            color: $color-link-secondary-hover;
+        }
+    }
+
+    .cover & {
+        color: #fff;
+        a {
+            @include attention(true) {
+                color: #fff;
+            }
+        }
+    }
+}
+
+.updated:not(.published){
+    display: none;
+}
+
+.teaser .block > a {
+    display: block;
+    overflow:hidden;
+    max-height: 154px; // 7:2 ratio
+}
