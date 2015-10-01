@@ -33,3 +33,16 @@ function eduardodomingos_photon_enabled() {
         return true;
     return false;
 }
+
+/**
+ * Get template part with passed arguments.
+ * @return file
+ */
+function eduardodomingos_get_template_part( $slug, $name = null, $data = array() ) {
+    extract( $data );
+    if ( $name )
+        $file = "{$slug}-{$name}.php";
+    else
+        $file = "{$slug}.php";
+    include locate_template( $file );
+}
