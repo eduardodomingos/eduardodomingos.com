@@ -23,6 +23,9 @@ else {
             $cover_overlay_value = get_field('cover_overlay') ? get_field('cover_overlay') : 0;
             echo '<div class="FlexEmbed-content" style="background-color: rgba(0,0,0,'. $cover_overlay_value .');">';
         }
+        else {
+            echo '<div class="FlexEmbed-content">';
+        }
     ?>
     <div class="cover__content container">
         <?php
@@ -49,6 +52,10 @@ else {
                     $markup.= '<li>' . eduardodomingos_get_post_category() . '</li>';
                 }
                 $markup.= '</ul>';
+                echo $markup;
+            }
+            else {
+                $markup = '<h1 class="cover__title">' . /*single_post_title('', false)*/ get_the_title() . '</h1>';
                 echo $markup;
             }
         ?>
