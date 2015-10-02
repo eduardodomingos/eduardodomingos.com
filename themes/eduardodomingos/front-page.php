@@ -71,6 +71,7 @@ get_header(); ?>
                                 $featured_image_4x1_alt = $featured_image_4x1['alt'];
                                 eduardodomingos_get_template_part( 'template-parts/content', get_post_format(), array( 'post_id' => $post->ID, 'template_type' => 'block', 'featured_image_4x1_url' => $featured_image_4x1_url, 'featured_image_4x1_alt' => $featured_image_4x1_alt ) );
                             } // end while
+                            wp_reset_postdata();
                         } // end if
                         ?>
                         </div><!-- .container -->
