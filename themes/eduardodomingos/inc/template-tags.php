@@ -7,11 +7,11 @@
  * @package Eduardo_Domingos
  */
 
-if ( ! function_exists( 'eduardodomingos_posted_on' ) ) :
+if ( ! function_exists( 'eduardodomingos_posted_on_by' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  */
-function eduardodomingos_posted_on() {
+function eduardodomingos_posted_on_by() {
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
@@ -111,6 +111,50 @@ function eduardodomingos_get_project_date($projct_id) {
             return sprintf(esc_html__( '%1$sDeveloped on%2$s %3$s', 'eduardodomingos' ), '<span class="hide">','</span>', $end_date );
         }
     }
+}
+endif;
+
+if ( ! function_exists( 'eduardodomingos_get_post_category' ) ) :
+/**
+ * Return HTML with formatted post categories list.
+ */
+function eduardodomingos_get_post_category() {
+    if ( 'post' === get_post_type() ) {
+        /* translators: used between list items, there is a space after the comma */
+        $categories_list = get_the_category_list( esc_html__( ', ', 'eduardodomingos' ) );
+        if ( $categories_list ) {
+            return sprintf( '<span class="cat-links">' . esc_html__( '%1$sPosted in%2$s %3$s', 'eduardodomingos' ) . '</span>', '<span class="hide">', '</span>', $categories_list ); // WPCS: XSS OK.
+        }
+    }
+}
+endif;
+
+if ( ! function_exists( 'eduardodomingos_posted_on' ) ) :
+/**
+ * Prints HTML with meta information for the current post-date/time.
+ */
+function eduardodomingos_posted_on() {
+    $time_string = '<time class="entry-date published updated timeago" datetime="%1$s">%2$s</time>';
+    if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+        $time_string = '<time class="entry-date published timeago" datetime="%1$s">%2$s</time><time class="updated timeago" datetime="%3$s">%4$s</time>';
+    }
+
+    $time_string = sprintf( $time_string,
+        esc_attr( get_the_date( 'c' ) ),
+        esc_html( get_the_date() ),
+        esc_attr( get_the_modified_date( 'c' ) ),
+        esc_html( get_the_modified_date() )
+    );
+
+    $posted_on = sprintf(
+        esc_html_x( '%1$sPosted on%2$s %3$s', 'post date', 'eduardodomingos' ),
+        '<span class="hide">',
+        '</span>',
+        '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
+    );
+
+    return '<span class="posted-on">' . $posted_on . '</span>'; // WPCS: XSS OK.
+
 }
 endif;
 
