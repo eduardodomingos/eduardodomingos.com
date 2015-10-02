@@ -158,6 +158,22 @@ function eduardodomingos_posted_on() {
 }
 endif;
 
+if ( ! function_exists( 'eduardodomingos_posted_by' ) ) :
+/**
+ * Prints HTML with meta information for the current post author.
+ */
+function eduardodomingos_posted_by() {
+    $byline = sprintf(
+        esc_html_x( '%1$sPosted by%2$s %3$s', 'post author', 'eduardodomingos' ),
+        '<span class="hide">',
+        '</span>',
+        '<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
+    );
+
+    return '<span class="byline"> ' . $byline . '</span>'; // WPCS: XSS OK.
+}
+endif;
+
 /**
  * Returns true if a blog has more than 1 category.
  *
