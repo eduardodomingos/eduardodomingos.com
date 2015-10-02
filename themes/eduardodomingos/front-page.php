@@ -18,11 +18,7 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 
 			<?php while ( have_posts() ) : the_post(); ?>
-                <div class="band">
-                    <div class="container">
-				        <?php get_template_part( 'template-parts/content', 'page' ); ?>
-                    </div><!-- .container -->
-                </div><!-- .band -->
+		        <?php //get_template_part( 'template-parts/content', 'page' ); ?>
                 <div class="band">
                     <div class="container">
                         <h1 class="yolo-heading"><?php esc_html_e( 'Latest portfolio', 'eduardodomingos' ); ?></h1>
@@ -58,7 +54,27 @@ get_header(); ?>
                         ?>
                     </div><!-- .container -->
                 </div><!-- .band -->
-
+                <div class="band band--shaded">
+                    <div class="container">
+                        <h1 class="yolo-heading"><?php esc_html_e( 'Latest articles', 'eduardodomingos' ); ?></h1>
+                        <?php
+                        $args = array(
+                            'post_type' =>  'post',
+                            'posts_per_page'    =>  get_field( 'posts_on_homepage', 'option' ),
+                        );
+                        $query = new WP_Query( $args );
+                        if ( $query->have_posts() ) {
+                            while ( $query->have_posts() ) {
+                                $query->the_post();
+                                $featured_image_4x1 = get_field('featured_image_4x1');
+                                $featured_image_4x1_url = $featured_image_4x1['url'];
+                                $featured_image_4x1_alt = $featured_image_4x1['alt'];
+                                eduardodomingos_get_template_part( 'template-parts/content', get_post_format(), array( 'post_id' => $post->ID, 'template_type' => 'block', 'featured_image_4x1_url' => $featured_image_4x1_url, 'featured_image_4x1_alt' => $featured_image_4x1_alt ) );
+                            } // end while
+                        } // end if
+                        ?>
+                        </div><!-- .container -->
+                </div><!-- .band -->
                 <?php if( comments_open() || get_comments_number() ) :?>
                     <?php // If comments are open or we have at least one comment, load up the comment template. ?>
                     <div class="band">
