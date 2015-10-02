@@ -19,7 +19,7 @@
                 <header class="entry-header">
                     <?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
                 </header><!-- .entry-header -->
-                 <div class="entry-content">
+                <div class="entry-content">
                     <?php the_excerpt();?>
                 </div><!-- .entry-content -->
                 <footer class="entry-footer">
@@ -36,6 +36,30 @@
 <?php break;?>
 
 <?php case 'block':?>
+
+    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+        <div class="block">
+            <?php if( !empty( $featured_image_4x1_url ) ) :?>
+            <a href="<?php echo esc_url( get_permalink()); ?>" rel="bookmark"><img src="<?php echo $featured_image_4x1_url;?>" alt="<?php echo $featured_image_4x1_alt;?>" class="block__img lazyload"></a>
+            <?php  endif; ?>
+            <div class="block__body box box--highlight">
+                <header class="entry-header">
+                    <?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+                </header><!-- .entry-header -->
+                <div class="entry-content">
+                    <?php the_excerpt();?>
+                </div><!-- .entry-content -->
+                <footer class="entry-footer">
+                    <ul class="entry-meta list-inline list-inline--delimited">
+                        <li><?php echo eduardodomingos_posted_on(); ?></li>
+                        <li><?php echo eduardodomingos_get_post_category(); ?></li>
+                    </ul><!-- .entry-meta -->
+                    <?php eduardodomingos_entry_footer(); ?>
+                </footer><!-- .entry-footer -->
+            </div><!-- .block__body -->
+        </div>
+    </article><!-- #post-## -->
+
 <?php break;?>
 
 <?php default:?>
