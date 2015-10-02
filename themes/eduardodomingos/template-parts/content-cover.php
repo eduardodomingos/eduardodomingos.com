@@ -17,7 +17,7 @@ else {
     echo '<div class="cover cover--text-center FlexEmbed">';
 }
 ?>
-    <div class="FlexEmbed-ratio FlexEmbed-ratio--16by9"></div>
+    <div class="FlexEmbed-ratio FlexEmbed-ratio--2by1"></div>
     <?php
         if( get_field( 'cover_image_2x1' ) ) {
             $cover_overlay_value = get_field('cover_overlay') ? get_field('cover_overlay') : 0;
@@ -26,7 +26,6 @@ else {
     ?>
     <div class="cover__content container">
         <?php
-        //var_dump(is_front_page());
             if( is_front_page() ) {
                 $markup = '<hgroup>';
                 $markup.= '<h1 class="cover__title">' . get_bloginfo( 'name ') . '</h1>';
@@ -35,6 +34,21 @@ else {
                 if( get_field( 'cover_text' ) ) {
                     $markup.= '<p class="cover__text">'. get_field( 'cover_text' ) .'</p>';
                 }
+                echo $markup;
+            }
+            elseif( is_single() ) {
+                $markup = '<h1 class="cover__title">' . get_the_title() . '</h1>';
+                $markup.= '<ul class="entry-meta list-inline list-inline--delimited">';
+                if('project' === get_post_type()) {
+                    $markup.= '<li>' . eduardodomingos_get_project_date($post->ID) . '</li>';
+                    $markup.= '<li>' . eduardodomingos_get_project_type($post->ID) . '</li>';
+                }
+                else {
+                    $markup.= '<li>' . eduardodomingos_posted_by() . '</li>';
+                    $markup.= '<li>' . eduardodomingos_posted_on() . '</li>';
+                    $markup.= '<li>' . eduardodomingos_get_post_category() . '</li>';
+                }
+                $markup.= '</ul>';
                 echo $markup;
             }
         ?>
