@@ -2,13 +2,6 @@
     #LIST-INLINE
 \*------------------------------------*/
 
-.list-inline,
-%list-inline {
-    > li {
-        margin-right: -4px;
-    }
-}
-
 .list-inline--delimited,
 %list-inline--delimited {
     > li + li:before {
