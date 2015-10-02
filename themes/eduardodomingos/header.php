@@ -25,7 +25,7 @@
     <a class="skip-link hide" href="#content"><?php esc_html_e( 'Skip to content', 'eduardodomingos' ); ?></a>
 
     <header id="masthead" class="site-header" role="banner">
-        <?php if( is_front_page() ) {
+        <?php if( is_front_page() || is_home() ) {
                 get_template_part( 'template-parts/content', 'cover' );
             }
         ?>
