@@ -64,14 +64,18 @@ get_header(); ?>
                         );
                         $query = new WP_Query( $args );
                         if ( $query->have_posts() ) {
+                            echo '<ul class="list-block">';
                             while ( $query->have_posts() ) {
                                 $query->the_post();
                                 $featured_image_4x1 = get_field('featured_image_4x1');
                                 $featured_image_4x1_url = $featured_image_4x1['url'];
                                 $featured_image_4x1_alt = $featured_image_4x1['alt'];
+                                echo '<li>';
                                 eduardodomingos_get_template_part( 'template-parts/content', get_post_format(), array( 'post_id' => $post->ID, 'template_type' => 'block', 'featured_image_4x1_url' => $featured_image_4x1_url, 'featured_image_4x1_alt' => $featured_image_4x1_alt ) );
+                                echo '</li>';
                             } // end while
                             wp_reset_postdata();
+                            echo '</ul>';
                         } // end if
                         ?>
                         </div><!-- .container -->
