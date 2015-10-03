@@ -8,15 +8,15 @@
 
         // Cache references to DOM elements for performance
         var dom = {
-            $window :           $(window),
-            $site_navigation :  $('#site-navigation')
+            $window:            $(window),
+            $body:              $('body'),
+            $site_navigation:   $('#site-navigation')
         };
 
         /*
          * Stick Header Navigation
          */
         // Clone site navigation
-        //var $site_navigation_clone =
         dom.$site_navigation
         .clone()
         .insertBefore( '#site-navigation' )
@@ -26,7 +26,6 @@
         .attr( 'id', function(i, str) { return str + '--cloned';} );
 
         // Cache cloned navigation
-        //console.log($site_navigation_clone);
         dom.$site_navigation_clone = $('#site-navigation--cloned');
 
         // Throttle window scroll for performace
@@ -43,7 +42,51 @@
             }
         }
 
+        /*
+         * Mobile Navigation
+         */
+        // Add div to DOM to house the mobile navigation
+        $('.site').after('<div id="mobile-navigation" role="navigation"></div><div class="mobile-nav-cover"></div>');
 
+        // Cache mobile navigation div for performace
+        dom.$mobile_navigation = $('#mobile-navigation');
+        dom.$mobile_navigation_cover = $('.mobile-nav-cover');
+
+        // Clone site navigation
+        dom.$site_navigation
+        .clone()
+        .find( '#primary-menu' )
+        .attr( 'id', 'mobile-menu')
+        .appendTo(dom.$mobile_navigation);
+
+        // Toggle Mobile Navigation
+        $(document).on('click', '.menu-toggle', function(e) {
+            e.preventDefault();
+            dom.$body.toggleClass('nav-open');
+            dom.$mobile_navigation_cover.addClass('active');
+            dom.$site_navigation_clone.removeClass('main-navigation--stick');
+        });
+
+        $(document).on('click', '.mobile-nav-cover', function(e) {
+            e.preventDefault();
+            dom.$body.toggleClass('nav-open');
+            dom.$mobile_navigation_cover.removeClass('active');
+        });
+
+        // Debounce window resize for performace
+        var lazyLayout = _.debounce(calculateLayout, 300);
+        $(window).resize(lazyLayout);
+
+        // Debounce callback
+        function calculateLayout() {
+            if( window.matchMedia('(min-width: 64em)').matches ) {
+                // Close mobile navigation for desk and up
+                if(dom.$body.hasClass('nav-open')) {
+                    dom.$body.removeClass('nav-open');
+                    dom.$mobile_navigation_cover.removeClass('active');
+                }
+            }
+        }
 
     });
 }(jQuery));
