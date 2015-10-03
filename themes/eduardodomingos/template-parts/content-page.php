@@ -9,6 +9,7 @@
 
 ?>
 
+<?php if(!empty(get_the_content())) : ?>
 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <div class="band">
         <div class="container">
@@ -33,3 +34,4 @@
         </div>
     </div>
 </div><!-- #post-## -->
+<?php endif; ?>
