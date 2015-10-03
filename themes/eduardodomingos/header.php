@@ -25,16 +25,16 @@
     <a class="skip-link hide" href="#content"><?php esc_html_e( 'Skip to content', 'eduardodomingos' ); ?></a>
 
     <header id="masthead" class="site-header" role="banner">
-        <?php if( is_front_page() || is_home() ) {
+        <?php if( ! is_single() ) {
                 get_template_part( 'template-parts/content', 'cover' );
             }
         ?>
-        <nav id="site-navigation" class="main-navigation" role="navigation">
+        <div id="site-navigation" class="main-navigation" role="navigation">
             <div class="site-branding container container--large">
                 <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><span class="hide"><?php esc_html_e( 'Primary Menu', 'eduardodomingos' ); ?></span></button>
                 <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu', 'container' => false ) ); ?>
             </div>
-        </nav><!-- #site-navigation -->
+        </div><!-- #site-navigation -->
     </header><!-- #masthead -->
 
     <div id="content" class="site-content">
