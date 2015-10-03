@@ -64,7 +64,22 @@ else {
                 echo $markup;
             }
             else {
-                $markup = '<h1 class="cover__title">' . single_post_title('', false) . '</h1>';
+                if( is_archive() ) {
+                    $markup = '<h1 class="cover__title">' . get_the_archive_title() . '</h1>';
+                    if( get_the_archive_description() ) {
+                        $markup.= '<p class="cover__text">' . get_the_archive_description() . '</p>';
+                    }
+                }
+                elseif( is_404() ) {
+                    $markup = '<h1 class="cover__title">' . esc_html( 'Oops! You went too far!', 'eduardodomingos' ) . '</h1>';
+                    $markup.= '<p class="cover__text">'. esc_html( 'Houston we have a problem! That page can&rsquo;t be found.', 'eduardodomingos' ) .'</p>';
+                }
+                else {
+                    $markup = '<h1 class="cover__title">' . single_post_title('', false) . '</h1>';
+                    if( get_field( 'cover_text' ) ) {
+                        $markup.= '<p class="cover__text">'. get_field( 'cover_text' ) .'</p>';
+                    }
+                }
                 echo $markup;
             }
         ?>
