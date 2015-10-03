@@ -8,7 +8,10 @@
  */
 
 ?>
-
+<?php
+    if( !isset($template_type) )
+        $template_type ='';
+?>
 <?php switch ($template_type): ?>
 <?php case 'media': ?>
 
@@ -19,13 +22,20 @@
                 <header class="entry-header">
                     <?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
                 </header><!-- .entry-header -->
+                <?php if(isset($show_excerpt) && true === $show_excerpt) : ?>
                 <div class="entry-content">
                     <?php the_excerpt();?>
                 </div><!-- .entry-content -->
+                <?php endif; ?>
                 <footer class="entry-footer">
                     <ul class="entry-meta list-inline list-inline--delimited">
-                        <li><?php echo eduardodomingos_get_project_date($project_id); ?></li>
-                        <li><?php echo eduardodomingos_get_project_type($project_id); ?></li>
+                        <?php if( 'project' === get_post_type() ) : ?>
+                            <li><?php echo eduardodomingos_get_project_date($post_id); ?></li>
+                            <li><?php echo eduardodomingos_get_project_type($post_id); ?></li>
+                        <?php elseif( 'post' === get_post_type() ) : ?>
+                            <li><?php echo eduardodomingos_posted_on(); ?></li>
+                            <li><?php echo eduardodomingos_get_post_category(); ?></li>
+                        <?php endif; ?>
                     </ul>
                     <?php eduardodomingos_entry_footer(); ?>
                 </footer><!-- .entry-footer -->
