@@ -14,35 +14,46 @@ get_header(); ?>
 
 		<?php if ( have_posts() ) : ?>
 
-			<header class="page-header">
-				<?php
-					the_archive_title( '<h1 class="page-title">', '</h1>' );
-					the_archive_description( '<div class="taxonomy-description">', '</div>' );
-				?>
-			</header><!-- .page-header -->
+            <div class="band">
+                <div class="container">
+                    <?php if('project' == get_post_type()) {
+                            printf( '<p class="yolo-heading">' . esc_html__( 'All projects in %1$s', 'eduardodomingos' ) . '</p>',  single_cat_title( '', false ));
+                        }
+                        else {
+                            printf( '<p class="yolo-heading">' . esc_html__( 'All posts in %1$s', 'eduardodomingos' ) . '</p>', single_cat_title( '', false ) );
+                        }
+                    ?>
+                    <ul class="list-ui condensed">
+        			<?php /* Start the Loop */ ?>
+        			<?php while ( have_posts() ) : the_post(); ?>
+                        <li>
+        				<?php
+                                $featured_image_16x9 = get_field('featured_image_16x9');
+                                $featured_image_16x9_url = $featured_image_16x9['url'];
+                                if( eduardodomingos_photon_enabled() ) {
+                                    // Photon enabled, so we go responsive.
+                                    $featured_image_16x9_url = apply_filters( 'jetpack_photon_url', $featured_image_16x9_url );
+                                }
+                                $featured_image_16x9_alt = $featured_image_16x9['alt'];
+                                eduardodomingos_get_template_part( 'template-parts/content', get_post_format(), array( 'post_id' => $post->ID, 'template_type' => 'media', 'thumb_url' => $featured_image_16x9_url, 'thumb_alt' => $featured_image_16x9_alt, 'show_excerpt' => false ) );
+        					/*
+        					 * Include the Post-Format-specific template for the content.
+        					 * If you want to override this in a child theme, then include a file
+        					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+        					 */
+        					//get_template_part( 'template-parts/content', get_post_format() );
+        				?>
+                        </li>
+        			<?php endwhile; ?>
 
-			<?php /* Start the Loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
+                    </ul>
+                </div>
+            </div>
+    		<?php else : ?>
 
-				<?php
+    			<?php get_template_part( 'template-parts/content', 'none' ); ?>
 
-					/*
-					 * Include the Post-Format-specific template for the content.
-					 * If you want to override this in a child theme, then include a file
-					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-					 */
-					get_template_part( 'template-parts/content', get_post_format() );
-				?>
-
-			<?php endwhile; ?>
-
-			<?php the_posts_navigation(); ?>
-
-		<?php else : ?>
-
-			<?php get_template_part( 'template-parts/content', 'none' ); ?>
-
-		<?php endif; ?>
+    		<?php endif; ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
