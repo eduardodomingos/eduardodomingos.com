@@ -9,6 +9,11 @@
             text-decoration: none;
         }
     }
+
+    .condensed & {
+         @include font-size(24px);
+         margin-bottom: $spacing-unit--tiny;
+    }
 }
 
 .entry-meta {
@@ -39,4 +44,13 @@
     display: block;
     overflow:hidden;
     max-height: 154px; // 7:2 ratio
+}
+
+.hentry {
+    .media__img {
+        max-width: 120px;
+        @include media-query(desk) {
+            max-width: 200px;
+        }
+    }
 }
