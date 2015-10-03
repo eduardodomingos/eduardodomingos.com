@@ -9,12 +9,7 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-    <?php if(! is_front_page() ): ?>
-    <header class="entry-header">
-        <?php get_template_part('template-parts/content', 'cover'); ?>
-    </header><!-- .entry-header -->
-    <?php endif; ?>
+<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <div class="band">
         <div class="container">
             <div class="entry-content">
@@ -37,4 +32,4 @@
             </footer><!-- .entry-footer -->
         </div>
     </div>
-</article><!-- #post-## -->
+</div><!-- #post-## -->

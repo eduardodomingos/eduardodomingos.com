@@ -18,8 +18,8 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 
 			<?php while ( have_posts() ) : the_post(); ?>
-		        <?php //get_template_part( 'template-parts/content', 'page' ); ?>
-                <div class="band">
+		        <?php get_template_part( 'template-parts/content', 'page' ); ?>
+                <section class="band">
                     <div class="container">
                         <h1 class="yolo-heading"><?php esc_html_e( 'Latest portfolio', 'eduardodomingos' ); ?></h1>
                         <?php
@@ -53,8 +53,8 @@ get_header(); ?>
                             }
                         ?>
                     </div><!-- .container -->
-                </div><!-- .band -->
-                <div class="band band--shaded">
+                </section><!-- .band -->
+                <section class="band band--shaded">
                     <div class="container">
                         <h1 class="yolo-heading"><?php esc_html_e( 'Latest articles', 'eduardodomingos' ); ?></h1>
                         <?php
@@ -79,7 +79,7 @@ get_header(); ?>
                         } // end if
                         ?>
                         </div><!-- .container -->
-                </div><!-- .band -->
+                </section><!-- .band -->
                 <?php if( comments_open() || get_comments_number() ) :?>
                     <?php // If comments are open or we have at least one comment, load up the comment template. ?>
                     <div class="band">
