@@ -75,13 +75,13 @@
             }
         }
 
-        // .archive .current_page_parent,
-        // .error404 .current_page_parent {
-        //     > a {
-        //         font-weight: normal!important;
-        //         opacity: 0.55!important;
-        //     }
-        // }
+        .archive .current_page_parent,
+        .error404 .current_page_parent {
+            > a {
+                font-weight: normal!important;
+                opacity: 0.55!important;
+            }
+        }
 
 // Mobile nav
 #mobile-navigation {
