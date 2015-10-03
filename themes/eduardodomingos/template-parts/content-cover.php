@@ -1,5 +1,6 @@
 <?php
 if( get_option( 'show_on_front' ) == 'page' && is_home() ) {
+
     $cover_image_2x1 = get_field( 'cover_image_2x1' , get_option( 'page_for_posts' ) );
     $cover_overlay_value = get_field( 'cover_overlay', get_option( 'page_for_posts' ) );
 }
@@ -8,7 +9,7 @@ else {
     $cover_overlay_value = get_field( 'cover_overlay' );
 }
 
-if( get_field( 'cover_image_2x1' ) ) {
+if( ! empty( $cover_image_2x1 ) ) {
     if( eduardodomingos_photon_enabled() ) {
         // Photon enabled, so we go responsive.
         echo '<div class="cover cover--text-center FlexEmbed photon" data-src="'. apply_filters( 'jetpack_photon_url', $cover_image_2x1 ) .'">';
@@ -27,7 +28,7 @@ else {
 ?>
     <div class="FlexEmbed-ratio FlexEmbed-ratio--2by1"></div>
     <?php
-        if( $cover_image_2x1 ) {
+        if( ! empty( $cover_image_2x1 ) ) {
             $cover_overlay_value = $cover_overlay_value ? $cover_overlay_value : 0;
             echo '<div class="FlexEmbed-content" style="background-color: rgba(0,0,0,'. $cover_overlay_value .');">';
         }
