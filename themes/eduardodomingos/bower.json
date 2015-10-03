@@ -8,6 +8,7 @@
   "description": "WordPress theme created for eduardodomingos.com",
   "license": "GPL",
   "dependencies": {
+    "fastclick": "~1.0.6",
     "inuit-box": "~0.4.4",
     "inuit-box-sizing": "~0.2.0",
     "inuit-buttons": "~0.4.2",

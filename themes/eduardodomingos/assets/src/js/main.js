@@ -1,5 +1,8 @@
 (function($) {
     $(document).ready(function(){
+        // Instantiate FastClick on the body
+        FastClick.attach(document.body);
+
         // Transitions Only After Page Load ( Chrome Bug )
         $("body").removeClass("preload");
 

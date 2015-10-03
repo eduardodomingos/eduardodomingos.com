@@ -19,7 +19,8 @@ module.exports = {
         flatten: true,
         src: [
             'bower_components/jquery-timeago/jquery.timeago.js',
-            'bower_components/lazysizes/lazysizes.js'
+            'bower_components/lazysizes/lazysizes.js',
+            'bower_components/fastclick/lib/fastclick.js',
         ],
         dest: 'assets/src/js/vendors/'
     }
