@@ -91,11 +91,13 @@
     bottom: 0;
     z-index: -1;
     width: 240px;
+    display: none;
     border-left: 1px solid $color-border;
     overflow-y: auto;
     padding: $logo-height $spacing-unit 0;
 
     .nav-open & {
+        display: block;
         z-index: 1;
     }
 }
