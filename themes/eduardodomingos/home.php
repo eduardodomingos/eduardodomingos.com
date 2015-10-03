@@ -17,23 +17,29 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
-			<?php while ( have_posts() ) : the_post(); ?>
+            <?php if( have_posts() ) : ?>
+                <div class="band band--shaded">
+                    <div class="container">
+                        <ul class="list-block">
+            			<?php while ( have_posts() ) : the_post(); ?>
 
-			        <?php //get_template_part( 'template-parts/content', 'page' ); ?>
+                            <?php
+                                $featured_image_4x1 = get_field('featured_image_4x1');
+                                $featured_image_4x1_url = $featured_image_4x1['url'];
+                                $featured_image_4x1_alt = $featured_image_4x1['alt'];
+                                echo '<li>';
+                                eduardodomingos_get_template_part( 'template-parts/content', get_post_format(), array( 'post_id' => $post->ID, 'template_type' => 'block', 'featured_image_4x1_url' => $featured_image_4x1_url, 'featured_image_4x1_alt' => $featured_image_4x1_alt ) );
+                                echo '</li>';
+                            ?>
 
-                <?php if( comments_open() || get_comments_number() ) :?>
-                    <?php // If comments are open or we have at least one comment, load up the comment template. ?>
-                    <div class="band">
-                        <div class="container">
-                            <?php comments_template();?>
-                        </div>
-                    </div>
-                <?php endif; ?>
-
-			<?php endwhile; // End of the loop. ?>
+            			<?php endwhile; // End of the loop. ?>
+                        <?php wp_reset_postdata();?>
+                        </ul>
+                    </div><!-- .container -->
+                </div><!-- .band -->
+            <?php endif; ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>
