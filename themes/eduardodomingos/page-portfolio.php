@@ -45,7 +45,7 @@ get_header(); ?>
                                     $client_logo = get_field('client_logo');
                                     $client_logo_url = $client_logo['url'];
                                     $client_logo_alt = $client_logo['alt'];
-                                    eduardodomingos_get_template_part( 'template-parts/content', get_post_format(), array( 'project_id' => $post->ID, 'template_type' => 'media', 'thumb_url' => $client_logo_url, 'thumb_alt' => $client_logo_alt ) );
+                                    eduardodomingos_get_template_part( 'template-parts/content', get_post_format(), array( 'post_id' => $post->ID, 'template_type' => 'media', 'thumb_url' => $client_logo_url, 'thumb_alt' => $client_logo_alt ) );
                                     echo '</li>';
                                 }
 
