@@ -15,3 +15,24 @@ textarea {
 input[type="submit"] {
     @extend %btn;
 }
+
+.wpcf7-not-valid-tip {
+    color: palette(red, '500');
+}
+
+.wpcf7-response-output {
+    border-radius: $base-round;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 20px;
+}
+
+.wpcf7-mail-sent-ok {
+    background-color: palette(green, '50');
+    border: 1px solid palette(green, '100');
+}
+
+.wpcf7-validation-errors {
+    background-color: palette(red, '500');
+    border: none;
+}
