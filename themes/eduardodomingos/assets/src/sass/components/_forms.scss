@@ -27,12 +27,12 @@ input[type="submit"] {
     padding: 20px;
 }
 
-.wpcf7-mail-sent-ok {
+div.wpcf7-mail-sent-ok {
     background-color: palette(green, '50');
     border: 1px solid palette(green, '100');
 }
 
-.wpcf7-validation-errors {
+div.wpcf7-validation-errors {
     background-color: palette(red, '500');
     border: none;
 }
