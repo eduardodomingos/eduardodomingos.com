@@ -1,0 +1,8 @@
+/*------------------------------------*\
+    #CAPTIONS
+\*------------------------------------*/
+
+.wp-caption-text {
+    @include font-size(13px);
+    margin: $spacing-unit--tiny;
+}
