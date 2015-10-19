@@ -32,7 +32,7 @@ get_header(); ?>
                                 'meta_key'          => 'end_date', // name of custom field
                                 'orderby'           => 'meta_value_num',
                                 'posts_per_page'    =>  get_field( 'projects_on_homepage', 'option' ),
-                                'order' => 'ASC'
+                                'order' => 'DESC'
                             ));
                             if( $posts )
                             {
