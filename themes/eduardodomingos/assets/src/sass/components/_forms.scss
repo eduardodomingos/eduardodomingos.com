@@ -20,11 +20,11 @@ input[type="submit"] {
     color: palette(red, '500');
 }
 
-.wpcf7-response-output {
+div.wpcf7-response-output {
     border-radius: $base-round;
     margin-left: 0;
     margin-right: 0;
-    padding: 20px;
+    padding: $spacing-unit--small;
 }
 
 div.wpcf7-mail-sent-ok {
@@ -35,4 +35,5 @@ div.wpcf7-mail-sent-ok {
 div.wpcf7-validation-errors {
     background-color: palette(red, '500');
     border: none;
+    color: #fff;
 }
