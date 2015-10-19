@@ -54,13 +54,18 @@ else {
                 if('project' === get_post_type()) {
                     $markup.= '<li>' . eduardodomingos_get_project_date($post->ID) . '</li>';
                     $markup.= '<li>' . eduardodomingos_get_project_type($post->ID) . '</li>';
+                    $markup.= '</ul>';
+                    if( get_field('url') ) {
+                        $markup.= '<a href="'.get_field('url').'" class="btn" target="_blank">'. esc_html( 'Visit project', 'eduardodomingos' ) .'</a>';
+                    }
                 }
                 else {
                     $markup.= '<li>' . eduardodomingos_posted_by() . '</li>';
                     $markup.= '<li>' . eduardodomingos_posted_on() . '</li>';
                     $markup.= '<li>' . eduardodomingos_get_post_category() . '</li>';
+                    $markup.= '</ul>';
                 }
-                $markup.= '</ul>';
+
                 echo $markup;
             }
             else {
