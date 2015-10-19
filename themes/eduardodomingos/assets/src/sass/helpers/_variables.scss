@@ -42,7 +42,11 @@ $base-round:    3px;
     green: (
         '500':  #4CAF50,
         '100':  #C8E6C9,
+        '50':   #E8F5E9,
     ),
+    red: (
+        '500':  #F44336,
+    )
 );
 
 @function palette($palette, $tone: '500') {
