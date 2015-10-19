@@ -33,7 +33,7 @@ get_header(); ?>
                                 'meta_key'          => 'end_date', // name of custom field
                                 'orderby'           => 'meta_value_num',
                                 'posts_per_page'    =>  -1,
-                                'order' => 'ASC'
+                                'order' => 'DESC'
                             ));
                             if( $posts )
                             {
