@@ -26,7 +26,7 @@
 
     <?php
         if( 'project' === get_post_type() ) {
-            //for use in the loop, list 4 post titles related to tags on current post
+            //for use in the loop, list 3 post titles related to tags on current post
             $orig_post = $post;
             global $post;
             $tags = wp_get_post_tags($post->ID);
@@ -37,7 +37,7 @@
                     'post_type' => 'project',
                     'tag__in' => $tag_ids,
                     'post__not_in' => array($post->ID),
-                    'posts_per_page'=> get_field( 'related_projects', 'option' ),
+                    'posts_per_page'=> get_field( 'related_projects', 'option' ), //3
                     'ignore_sticky_posts'=> true
                 );
                 $query = new WP_Query( $args );
