@@ -53,7 +53,8 @@
                                         $featured_image_16x9_url = $featured_image_16x9['url'];
                                         if( eduardodomingos_photon_enabled() ) {
                                             // Photon enabled, so we go responsive.
-                                            $featured_image_16x9_url = apply_filters( 'jetpack_photon_url', $featured_image_16x9_url );
+                                            $args = array('w'=>'200');
+                                            $featured_image_16x9_url = apply_filters( 'jetpack_photon_url', $featured_image_16x9_url, $args );
                                         }
                                         $featured_image_16x9_alt = $featured_image_16x9['alt'];
                                         eduardodomingos_get_template_part( 'template-parts/content', get_post_format(), array( 'post_id' => $post->ID, 'template_type' => 'media', 'thumb_url' => $featured_image_16x9_url, 'thumb_alt' => $featured_image_16x9_alt, 'show_excerpt' => false ) );
