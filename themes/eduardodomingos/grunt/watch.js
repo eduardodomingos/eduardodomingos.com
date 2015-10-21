@@ -5,6 +5,6 @@ module.exports = {
     },
     js: {
         files: "assets/src/js/*.js",
-        tasks: ["concat","uglify"]
+        tasks: ["concat"]
     }
 };
