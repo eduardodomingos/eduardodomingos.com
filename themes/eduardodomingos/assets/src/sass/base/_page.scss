@@ -3,6 +3,10 @@
 \*------------------------------------*/
 
 html {
-    font-family: $font-sans-serif, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-weight: normal;
+}
+
+html.fonts-loaded {
+    font-family: $font-sans-serif, sans-serif;
 }
