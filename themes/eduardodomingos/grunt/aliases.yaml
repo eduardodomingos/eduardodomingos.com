@@ -1,6 +1,7 @@
 default:
  - 'copy'
  - 'sass'
+ - 'cssmin'
  - 'postcss'
  - 'concat'
  - 'uglify'
