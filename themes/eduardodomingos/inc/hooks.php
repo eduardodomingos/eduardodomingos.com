@@ -68,3 +68,8 @@ function fix_img_caption_shortcode_inline_style($output,$attr,$content) {
     return '<div ' . $atts['id'] . $style . 'class="' . esc_attr( $class ) . '">'
         . do_shortcode( $content ) . '<p class="wp-caption-text">' . $atts['caption'] . '</p></div>';
 }
+
+// WPCF7 disable the loading of the JavaScript and CSS
+add_filter( 'wpcf7_load_js', '__return_false' );
+add_filter( 'wpcf7_load_css', '__return_false' );
+
