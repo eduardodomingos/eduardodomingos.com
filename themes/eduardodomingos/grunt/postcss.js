@@ -5,6 +5,6 @@ module.exports = {
         ]
     },
     dist: {
-        src: 'assets/build/css/*.min.css'
+        src: 'assets/build/css/main.css'
     }
 };
