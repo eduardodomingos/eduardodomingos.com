@@ -16,7 +16,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+<?php
+    if(is_page('hire-me')) {
+        if ( function_exists( 'wpcf7_enqueue_scripts' ) ) {
+            wpcf7_enqueue_scripts();
+        }
 
+        if ( function_exists( 'wpcf7_enqueue_styles' ) ) {
+            wpcf7_enqueue_styles();
+        }
+    }
+?>
 <?php wp_head(); ?>
 </head>
 
