@@ -823,8 +823,11 @@ input[type="submit"]::-moz-focus-inner {
 /*------------------------------------*    #PAGE
 \*------------------------------------*/
 html {
-  font-family: "Open Sans", sans-serif, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-weight: normal; }
+
+html.fonts-loaded {
+  font-family: "Open Sans", sans-serif, sans-serif; }
 
 /*------------------------------------*    #TYPOGRAPHY
 \*------------------------------------*/
