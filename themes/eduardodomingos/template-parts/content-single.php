@@ -57,7 +57,9 @@
                                             $featured_image_16x9_url = apply_filters( 'jetpack_photon_url', $featured_image_16x9_url, $args );
                                         }
                                         $featured_image_16x9_alt = $featured_image_16x9['alt'];
+                                        echo '<li>';
                                         eduardodomingos_get_template_part( 'template-parts/content', get_post_format(), array( 'post_id' => $post->ID, 'template_type' => 'media', 'thumb_url' => $featured_image_16x9_url, 'thumb_alt' => $featured_image_16x9_alt ) );
+                                        echo '</li>';
                                     }
                                 ?>
                             </ul>
