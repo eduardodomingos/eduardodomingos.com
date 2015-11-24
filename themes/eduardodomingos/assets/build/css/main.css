@@ -1176,7 +1176,8 @@ input[type="search"] {
 
 .entry-content img {
   max-width: 100%;
-  height: auto; }
+  height: auto;
+  border: 1px solid #E0E0E0; }
 
 /*------------------------------------*    #FORMS
 \*------------------------------------*/
@@ -1340,8 +1341,9 @@ div.wpcf7-validation-errors {
 .wp-caption-text {
   font-size: 13px;
   font-size: 0.8125rem;
-  line-height: 1.8461538462;
-  margin: 6px; }
+  line-height: 1.4;
+  margin: 12px 0;
+  opacity: 0.85; }
 
 /*------------------------------------*    #CLEARFIX
 \*------------------------------------*/
