@@ -54,6 +54,32 @@ get_header(); ?>
                         ?>
                     </div><!-- .container -->
                 </section><!-- .band -->
+                <section class="band band--shaded">
+                    <div class="container">
+                        <h1 class="yolo-heading"><?php esc_html_e( 'Latest from blog', 'eduardodomingos' ); ?></h1>
+                        <?php
+                            $args = array(
+                                'post_type'         => 'post',
+                                'posts_per_page'    => 1,
+                            );
+
+                            $query = new WP_Query( $args );
+
+                            if( $query->have_posts() ) {
+                                echo '<ul class="list-bare">';
+                                while( $query->have_posts() ) {
+                                    $query->the_post();
+                                    echo '<li>';
+                                    $featured_image_4x1 = get_field('featured_image_4x1');
+                                    $featured_image_4x1_url = $featured_image_4x1['url'];
+                                    $featured_image_4x1_alt = $featured_image_4x1['alt'];
+                                    eduardodomingos_get_template_part( 'template-parts/content', get_post_format(), array( 'post_id' => $post->ID, 'template_type' => 'block', 'featured_image_4x1_url' => $featured_image_4x1_url, 'featured_image_4x1_alt' => $featured_image_4x1_alt ) );
+                                    echo '</li>';
+                                }
+                            echo '</ul>';
+                        } ?>
+                    </div><!-- .container -->
+                </section><!-- .band -->
                 <?php if( comments_open() || get_comments_number() ) :?>
                     <?php // If comments are open or we have at least one comment, load up the comment template. ?>
                     <div class="band">
