@@ -91,5 +91,17 @@
             }
         }
 
+        /*
+         * Responsive Cover
+         */
+        if( dom.$body.hasClass('single-post') ) {
+            var $cover = $('.cover'); // cache cover
+            if($cover.hasClass('photon')) {
+                var cover_url = $cover.data('src');
+                $cover.css({
+                    'background-image': 'url('+cover_url+')',
+                });
+            }
+        }
     });
 }(jQuery));
