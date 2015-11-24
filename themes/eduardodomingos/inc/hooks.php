@@ -20,7 +20,7 @@ function eduardodomingos_portfolio_menu_item_classes( $classes, $item )
     // Only run on project post type
     case 'project':
       // Remove current_page_parent from Blog menu item
-      if( $item->title == 'Articles' ) {
+      if( $item->title == 'Blog' ) {
         $classes = array_diff( $classes, array( 'current_page_parent' ) );
       }
       // Add current_page_parent class to the portfolio menu item
