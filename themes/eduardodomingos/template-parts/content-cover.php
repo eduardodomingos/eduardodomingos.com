@@ -12,7 +12,7 @@ else {
 if( ! empty( $cover_image_2x1 ) ) {
     if( eduardodomingos_photon_enabled() ) {
         // Photon enabled, so we go responsive.
-        echo '<div class="cover cover--text-center FlexEmbed photon" data-src="'. apply_filters( 'jetpack_photon_url', $cover_image_2x1 ) .'">';
+        echo '<div class="cover cover--text-center cover--has-image FlexEmbed photon" data-src="'. apply_filters( 'jetpack_photon_url', $cover_image_2x1 ) .'">';
     }
     else {
         // Photon disabled.
