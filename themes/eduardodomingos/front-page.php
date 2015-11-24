@@ -76,8 +76,10 @@ get_header(); ?>
                                     eduardodomingos_get_template_part( 'template-parts/content', get_post_format(), array( 'post_id' => $post->ID, 'template_type' => 'block', 'featured_image_4x1_url' => $featured_image_4x1_url, 'featured_image_4x1_alt' => $featured_image_4x1_alt ) );
                                     echo '</li>';
                                 }
-                            echo '</ul>';
-                        } ?>
+                                wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly
+                                echo '</ul>';
+                            }
+                        ?>
                     </div><!-- .container -->
                 </section><!-- .band -->
                 <?php if( comments_open() || get_comments_number() ) :?>
