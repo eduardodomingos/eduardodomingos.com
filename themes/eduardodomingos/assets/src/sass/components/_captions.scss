@@ -3,6 +3,7 @@
 \*------------------------------------*/
 
 .wp-caption-text {
-    @include font-size(13px);
-    margin: $spacing-unit--tiny;
+    @include font-size(13px, 1.4);
+    margin: $spacing-unit--small 0;
+    opacity: 0.85;
 }
