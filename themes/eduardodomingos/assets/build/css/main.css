@@ -863,6 +863,22 @@ a {
   a:focus {
     text-decoration: underline; }
 
+code, kbd, samp {
+  color: #859900;
+  font-family: Inconsolata, Monaco, Consolas, "Andale Mono", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+  font-style: normal; }
+
+pre {
+  white-space: pre;
+  word-wrap: normal;
+  overflow: auto;
+  padding: 12px;
+  background-color: #333;
+  border-radius: 3px; }
+  pre,
+  pre code, pre kbd, pre samp {
+    color: #fff; }
+
 /*------------------------------------*    #FORMS
 \*------------------------------------*/
 input[type="text"],

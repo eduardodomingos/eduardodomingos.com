@@ -26,3 +26,26 @@ a {
         text-decoration: underline;
     }
 }
+
+//Code-like elements.
+
+code, kbd, samp {
+    color: $color-code;
+    font-family: $font-code;
+    font-style: normal;
+}
+
+pre {
+    white-space: pre;
+    word-wrap: normal;
+    overflow: auto;
+    padding: $spacing-unit--small;
+    background-color: $color-pre-background;
+    border-radius: $base-round;
+
+    &,
+    code, kbd, samp {
+        color: $color-pre;
+    }
+
+}
