@@ -61,6 +61,9 @@ $color-bg-shaded: palette(grey, '200');
 $color-text-main: palette(grey, '800');
 $color-text-secondary: palette(grey, '600');
 $color-headings: palette(grey, '800');
+$color-code:            #859900;
+$color-pre-background:  #333;
+$color-pre:             #fff;
 
 // Borders
 $color-border: palette(grey, '300');
@@ -87,8 +90,7 @@ $color-success: palette(green, '100');
 \*------------------------------------*/
 $font-serif:        'Merriweather', serif;
 $font-sans-serif:   'Open Sans', sans-serif;
-$font-code:         Monaco, Consolas, 'Andale Mono', 'DejaVu Sans Mono', monospace;
-$font-pre:          'Courier 10 Pitch', Courier, monospace;
+$font-code:         Inconsolata, Monaco, Consolas, "Andale Mono", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
 
 
 
