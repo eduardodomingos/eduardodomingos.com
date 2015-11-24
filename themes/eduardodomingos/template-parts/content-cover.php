@@ -81,8 +81,17 @@ else {
                 }
                 else {
                     $markup = '<h1 class="cover__title">' . single_post_title('', false) . '</h1>';
-                    if( get_field( 'cover_text' ) ) {
-                        $markup.= '<p class="cover__text">'. get_field( 'cover_text' ) .'</p>';
+                    if( is_home() ) {
+                        // ACF needs to specify the Blog page ID in the get_field function.
+                        $slug = get_page_by_path( 'blog' );
+                        if( get_field( 'cover_text', $slug->ID ) ) {
+                            $markup.= '<p class="cover__text">'. get_field( 'cover_text', $slug->ID ) .'</p>';
+                        }
+                    }
+                    else {
+                        if( get_field( 'cover_text' ) ) {
+                            $markup.= '<p class="cover__text">'. get_field( 'cover_text' ) .'</p>';
+                        }
                     }
                 }
                 echo $markup;
