@@ -1245,6 +1245,15 @@ div.wpcf7-validation-errors {
   font-style: normal;
   display: inline-block;
   line-height: 1;
+  content: "";
+  padding-right: 0; }
+
+.icon--facebook-official:before {
+  font-family: 'FontAwesome';
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
   content: "";
   padding-right: 0; }
 
@@ -1255,6 +1264,42 @@ div.wpcf7-validation-errors {
   display: inline-block;
   line-height: 1;
   content: "";
+  padding-right: 0; }
+
+.icon--linkedin:before {
+  font-family: 'FontAwesome';
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  content: "";
+  padding-right: 0; }
+
+.icon--googleplus:before {
+  font-family: 'FontAwesome';
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  content: "";
+  padding-right: 0; }
+
+.icon--email:before {
+  font-family: 'FontAwesome';
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  content: "";
+  padding-right: 0; }
+
+.icon--whatsapp:before {
+  font-family: 'FontAwesome';
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  content: "";
   padding-right: 0; }
 
 .icon--dribbble:before {
@@ -1273,15 +1318,6 @@ div.wpcf7-validation-errors {
   display: inline-block;
   line-height: 1;
   content: "";
-  padding-right: 0; }
-
-.icon--linkedin:before {
-  font-family: 'FontAwesome';
-  font-weight: normal;
-  font-style: normal;
-  display: inline-block;
-  line-height: 1;
-  content: "";
   padding-right: 0; }
 
 /*------------------------------------*    #LIST-BLOCK
@@ -1361,6 +1397,36 @@ div.wpcf7-validation-errors {
   line-height: 1.4;
   margin: 12px 0;
   opacity: 0.85; }
+
+/*------------------------------------*    #SHARES
+\*------------------------------------*/
+.share-this a {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  color: #fff;
+  font-size: 15px;
+  font-size: 0.9375rem;
+  line-height: 30px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  margin-right: 6px; }
+
+.share-this .label {
+  margin-right: 6px; }
+
+.link-share-facebook {
+  background-color: #3c5898; }
+
+.link-share-gplus {
+  background-color: #cd3627; }
+
+.link-share-in {
+  background-color: #1a85bc; }
+
+.link-share-email {
+  background-color: #a0a0a5; }
 
 /*------------------------------------*    #CLEARFIX
 \*------------------------------------*/
