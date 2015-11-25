@@ -32,6 +32,32 @@ function eduardodomingos_portfolio_menu_item_classes( $classes, $item )
   return $classes;
 }
 
+// Open Graph Tags
+add_action( 'wp_head', 'eduardodomingos_add_opengraph_tags' );
+function eduardodomingos_add_opengraph_tags() {
+    if ( is_single() ) {
+        global $post;
+        $post_id = $post->ID;
+
+        $title = get_the_title();
+        $image = eduardodomingos_get_featured_photo_url();
+        $link = get_permalink();
+
+        //$description = strip_tags(observador_get_lead());
+
+        // Replace Quotes so that the HTML doesn't break
+        //$description = str_replace( '"', '&quot;', $description );
+        $og_tags = '<meta property="og:title" content="'.$title.'" />';
+        $og_tags.='<meta property="og:type" content="article" />';
+        $og_tags.='<meta property="og:image" content="'.$image.'" />';
+        $og_tags.='<meta property="og:image:width" content="770" />';
+        $og_tags.='<meta property="og:image:height" content="433" />';
+        $og_tags.='<meta property="og:url" content="'.$link.'" />';
+        $og_tags.='<meta property="og:site_name" content="Eduardo Domingos" />';
+        echo $og_tags;
+    }
+}
+
 
 
 add_filter('img_caption_shortcode','fix_img_caption_shortcode_inline_style',10,3);
