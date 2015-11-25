@@ -3,11 +3,31 @@
 \*------------------------------------*/
 
 .icon--facebook {
+    @include icon('\f09a');
+}
+
+.icon--facebook-official {
     @include icon('\f230');
 }
 
 .icon--twitter {
     @include icon('\f099');
+}
+
+.icon--linkedin {
+    @include icon('\f0e1');
+}
+
+.icon--googleplus {
+    @include icon('\f0d5');
+}
+
+.icon--email {
+    @include icon('\f003');
+}
+
+.icon--whatsapp {
+    @include icon('\f232');
 }
 
 .icon--dribbble {
@@ -16,8 +36,4 @@
 
 .icon--github {
     @include icon('\f113');
-}
-
-.icon--linkedin {
-    @include icon('\f0e1');
 }
