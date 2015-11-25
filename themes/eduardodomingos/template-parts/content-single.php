@@ -21,6 +21,7 @@
             <footer class="entry-footer">
                 <?php eduardodomingos_entry_footer(); ?>
             </footer><!-- .entry-footer -->
+            <?php echo eduardodomingos_share_buttons( esc_html__( 'Share', 'eduardodomingos' ), get_permalink(), get_the_title()); ?>
         </div><!-- .container -->
     </div><!-- .band -->
 
