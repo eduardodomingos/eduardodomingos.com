@@ -16,6 +16,7 @@
     <div class="band">
         <div class="container">
             <div class="entry-content">
+                <?php the_field('lead') ?>
                 <?php the_content(); ?>
             </div><!-- .entry-content -->
             <footer class="entry-footer">
