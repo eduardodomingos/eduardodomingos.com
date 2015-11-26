@@ -1,6 +1,19 @@
 /*------------------------------------*\
     #SHARES
 \*------------------------------------*/
+.share-this {
+    position: relative;
+    padding-top: $spacing-unit;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        display: inline-block;
+        width: 90px;
+        height: 1px;
+        background-color: $color-text-secondary;
+    }
+}
 
 .share-this a {
     display: inline-block;
