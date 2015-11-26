@@ -1400,6 +1400,18 @@ div.wpcf7-validation-errors {
 
 /*------------------------------------*    #SHARES
 \*------------------------------------*/
+.share-this {
+  position: relative;
+  padding-top: 24px; }
+  .share-this:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    display: inline-block;
+    width: 90px;
+    height: 1px;
+    background-color: #757575; }
+
 .share-this a {
   display: inline-block;
   height: 30px;
