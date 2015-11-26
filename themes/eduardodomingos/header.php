@@ -32,8 +32,9 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed site">
-    <a class="skip-link hide" href="#content"><?php esc_html_e( 'Skip to content', 'eduardodomingos' ); ?></a>
-
+    <div class="hide">
+        <a class="skip-link" href="#content"><?php esc_html_e( 'Skip to content', 'eduardodomingos' ); ?></a>
+    </div>
     <header id="masthead" class="site-header" role="banner">
         <?php if( ! is_single() ) {
                 get_template_part( 'template-parts/content', 'cover' );
