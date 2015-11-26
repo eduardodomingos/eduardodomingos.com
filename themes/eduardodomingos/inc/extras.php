@@ -69,7 +69,7 @@ function eduardodomingos_share_buttons( $label = 'Share', $url = '', $title = ''
 
     $html .= '<a title="'. esc_html__( 'Share on', 'eduardodomingos' ) .' Facebook" href="https://www.facebook.com/sharer/sharer.php?t=' . $title . '&u=' . $url . '" class="link-share-facebook"><span class="icon--facebook"></span></a>';
 
-    //$html .= '<a title="'. esc_html__( 'Share on', 'eduardodomingos' ) .' Twitter" href="https://twitter.com/intent/tweet?original_referer=' . $url . '&text=' . $title . ': ' . $url . '&via=observadorpt" class="link-share-twitter"><span class="icon-social-twitter"></span></a>';
+    $html .= '<a title="'. esc_html__( 'Share on', 'eduardodomingos' ) .' Twitter" href="https://twitter.com/intent/tweet?original_referer=' . $url . '&text=' . $title . ': ' . $url . '&via=eddomingos" class="link-share-twitter"><span class="icon-social-twitter"></span></a>';
 
     $html .= '<a title="'. esc_html__( 'Share on', 'eduardodomingos' ) .' Google+" href="https://plus.google.com/share?url=' . $url . '" class="link-share-gplus"><span class="icon--googleplus"></span></a>';
 
