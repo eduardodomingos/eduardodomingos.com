@@ -60,7 +60,7 @@ get_header(); ?>
                         <?php
                             $args = array(
                                 'post_type'         => 'post',
-                                'posts_per_page'    => 1,
+                                'posts_per_page'    => get_field( 'posts_on_homepage', 'option' ),
                             );
 
                             $query = new WP_Query( $args );
