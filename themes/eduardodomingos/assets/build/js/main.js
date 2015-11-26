@@ -1229,10 +1229,10 @@ u();setTimeout(a,50)}}var D=Date.now();w(l,"sans-serif",k);w(m,"serif",k);w(n,"m
             });
 
             // Twitter Share
-            // $share.find('.link-share-twitter').on('click', function(e){
-            //   e.preventDefault();
-            //   window.open( $(this).attr('href'), 'twitter', 'toolbar=0,status=0,width=548,height=325');
-            // });
+            $share.find('.link-share-twitter').on('click', function(e){
+              e.preventDefault();
+              window.open( $(this).attr('href'), 'twitter', 'toolbar=0,status=0,width=548,height=325');
+            });
 
             // Share Google Plus
             $share.find('.link-share-gplus').on('click', function(e){

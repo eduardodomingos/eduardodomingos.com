@@ -118,10 +118,10 @@
             });
 
             // Twitter Share
-            // $share.find('.link-share-twitter').on('click', function(e){
-            //   e.preventDefault();
-            //   window.open( $(this).attr('href'), 'twitter', 'toolbar=0,status=0,width=548,height=325');
-            // });
+            $share.find('.link-share-twitter').on('click', function(e){
+              e.preventDefault();
+              window.open( $(this).attr('href'), 'twitter', 'toolbar=0,status=0,width=548,height=325');
+            });
 
             // Share Google Plus
             $share.find('.link-share-gplus').on('click', function(e){
