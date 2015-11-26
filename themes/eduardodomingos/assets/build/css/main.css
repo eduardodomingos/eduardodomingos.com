@@ -705,12 +705,12 @@ input[type="submit"]::-moz-focus-inner {
  * The list-inline object simply displays a list of items in one line.
  */
 .list-inline,
-#social-menu {
+.entry-tags, #social-menu {
   margin: 0;
   padding: 0;
   list-style: none; }
   .list-inline > li,
-  #social-menu > li {
+  .entry-tags > li, #social-menu > li {
     display: inline-block; }
 
 /**
@@ -1177,6 +1177,14 @@ input[type="search"] {
     .cover .entry-meta a:active,
     .cover .entry-meta a:focus {
       color: #fff; }
+
+.entry-tags li:not(:last-child) {
+  margin-right: 6px; }
+
+.entry-tags a {
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.7142857143; }
 
 .updated:not(.published) {
   display: none; }

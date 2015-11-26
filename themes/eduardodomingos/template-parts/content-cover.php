@@ -64,6 +64,15 @@ else {
                     $markup.= '<li>' . eduardodomingos_posted_on() . '</li>';
                     $markup.= '<li>' . eduardodomingos_get_post_category() . '</li>';
                     $markup.= '</ul>';
+
+                    $posttags = get_the_tags();
+                    if ($posttags) {
+                        $markup.= '<ul class="entry-tags">';
+                        foreach($posttags as $tag) {
+                            $markup.= '<li><a href="'. get_tag_link($tag->term_id) .'">#' . $tag->name . '</a></li>';
+                        }
+                        $markup.= '</ul>';
+                    }
                 }
 
                 echo $markup;

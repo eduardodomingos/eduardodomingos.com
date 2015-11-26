@@ -37,6 +37,16 @@
     }
 }
 
+.entry-tags {
+    @extend %list-inline;
+    li:not(:last-child) {
+        margin-right: $spacing-unit--tiny;
+    }
+    a {
+        @include font-size(14px);
+    }
+}
+
 .updated:not(.published){
     display: none;
 }
