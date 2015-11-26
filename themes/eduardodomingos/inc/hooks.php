@@ -52,6 +52,7 @@ function eduardodomingos_add_opengraph_tags() {
         $og_tags.='<meta property="og:image:height" content="433" />';
         $og_tags.='<meta property="og:url" content="'. $link .'" />';
         $og_tags.='<meta property="og:site_name" content="Eduardo Domingos" />';
+        $og_tags.='<meta property="og:description" content="'. $description .'"/>';
 
         $twitter_username = 'eddomingos';
         $og_tags.='<meta name="twitter:card" content="summary_large_image">';
