@@ -42,18 +42,25 @@ function eduardodomingos_add_opengraph_tags() {
         $title = get_the_title();
         $image = eduardodomingos_get_featured_photo_url();
         $link = get_permalink();
+        $description = strip_tags(eduardodomingos_get_lead());
+        $description = str_replace( '"', '&quot;', $description ); // replace quotes so that the HTML doesn't break
 
-        //$description = strip_tags(observador_get_lead());
-
-        // Replace Quotes so that the HTML doesn't break
-        //$description = str_replace( '"', '&quot;', $description );
-        $og_tags = '<meta property="og:title" content="'.$title.'" />';
+        $og_tags = '<meta property="og:title" content="'. $title .'" />';
         $og_tags.='<meta property="og:type" content="article" />';
-        $og_tags.='<meta property="og:image" content="'.$image.'" />';
+        $og_tags.='<meta property="og:image" content="'. $image .'" />';
         $og_tags.='<meta property="og:image:width" content="770" />';
         $og_tags.='<meta property="og:image:height" content="433" />';
-        $og_tags.='<meta property="og:url" content="'.$link.'" />';
+        $og_tags.='<meta property="og:url" content="'. $link .'" />';
         $og_tags.='<meta property="og:site_name" content="Eduardo Domingos" />';
+
+        $twitter_username = 'eddomingos';
+        $og_tags.='<meta name="twitter:card" content="summary_large_image">';
+        $og_tags.='<meta name="twitter:site" content="@eddomingos">';
+        $og_tags.='<meta name="twitter:creator" content="'. $twitter_username .'">';
+        $og_tags.='<meta name="twitter:title" content="'. $title .'">';
+        $og_tags.='<meta name="twitter:description" content="'. $description .'">';
+        $og_tags.='<meta name="twitter:image" content="'. $image .'">';
+
         echo $og_tags;
     }
 }
