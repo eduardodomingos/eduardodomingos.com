@@ -20,11 +20,11 @@ get_header(); ?>
 
             <?php if( comments_open() || get_comments_number() ) :?>
                 <?php // If comments are open or we have at least one comment, load up the comment template. ?>
-                <div class="band">
-                    <div class="container">
-                        <?php comments_template();?>
-                    </div>
+
+                <div class="container">
+                    <?php comments_template();?>
                 </div>
+
             <?php endif; ?>
 
         <?php endwhile; // End of the loop. ?>
