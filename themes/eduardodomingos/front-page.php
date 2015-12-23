@@ -54,7 +54,7 @@ get_header(); ?>
                         ?>
                     </div><!-- .container -->
                 </section><!-- .band -->
-                <section class="band band--shaded">
+                <section class="band band--shaded featured-posts">
                     <div class="container">
                         <h1 class="yolo-heading"><?php esc_html_e( 'Latest from blog', 'eduardodomingos' ); ?></h1>
                         <?php
