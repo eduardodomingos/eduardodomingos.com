@@ -266,7 +266,8 @@ select {
  *    `input` and others.
  */
 button,
-html input[type="button"], input[type="reset"],
+html input[type="button"],
+input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button;
   /* 2 */
@@ -429,9 +430,7 @@ ins {
 html {
   box-sizing: border-box; }
 
-*,
-*:before,
-*:after {
+*, *:before, *:after {
   box-sizing: inherit; }
 
 /*------------------------------------*    #SHARED
@@ -562,7 +561,9 @@ img {
  * 2. If a `width` and/or `height` attribute have been explicitly defined, let’s
  *    not make the image fluid.
  */
-.gm-style img, img[width], img[height] {
+.gm-style img,
+img[width],
+img[height] {
   /* [2] */
   max-width: none; }
 
@@ -603,10 +604,7 @@ input[type="submit"] {
   background-color: #E91E63;
   border: 2px solid #E91E63;
   border-radius: 3px; }
-  .btn,
-  .btn:hover,
-  .btn:active,
-  .btn:focus,
+  .btn, .btn:hover, .btn:active, .btn:focus,
   input[type="submit"],
   input[type="submit"]:hover,
   input[type="submit"]:active,
@@ -705,12 +703,12 @@ input[type="submit"]::-moz-focus-inner {
  * The list-inline object simply displays a list of items in one line.
  */
 .list-inline,
-.entry-tags, #social-menu {
+.entry-tags,
+#social-menu {
   margin: 0;
   padding: 0;
   list-style: none; }
-  .list-inline > li,
-  .entry-tags > li, #social-menu > li {
+  .list-inline > li, .entry-tags > li, #social-menu > li {
     display: inline-block; }
 
 /**
@@ -754,12 +752,10 @@ input[type="submit"]::-moz-focus-inner {
      */
 .list-ui--tiny > .list-ui__item,
 .list-ui.list-ui--tiny > li,
-#mobile-menu.list-ui--tiny > li,
-#mobile-menu > .list-ui__item,
-#mobile-menu > li {
+#mobile-menu.list-ui--tiny > li, #mobile-menu > .list-ui__item, #mobile-menu > li {
   padding: 6px; }
 
-/** @define FlexEmbed; use strict */
+/** @define FlexEmbed */
 /**
  * Flexible media embeds
  *
@@ -839,19 +835,7 @@ h1, h2, h3, h4, h5, h6 {
   h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
     color: inherit;
     text-decoration: underline; }
-    h1 > a:hover,
-    h2 > a:hover,
-    h3 > a:hover,
-    h4 > a:hover,
-    h5 > a:hover,
-    h6 > a:hover,
-    h1 > a:active,
-    h2 > a:active,
-    h3 > a:active,
-    h4 > a:active,
-    h5 > a:active,
-    h6 > a:active,
-    h1 > a:focus, h2 > a:focus, h3 > a:focus, h4 > a:focus, h5 > a:focus, h6 > a:focus {
+    h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hover, h1 > a:active, h2 > a:active, h3 > a:active, h4 > a:active, h5 > a:active, h6 > a:active, h1 > a:focus, h2 > a:focus, h3 > a:focus, h4 > a:focus, h5 > a:focus, h6 > a:focus {
       text-decoration: underline;
       color: #000; }
 
@@ -859,9 +843,7 @@ a {
   color: #E91E63;
   text-decoration: none;
   transition: all ease 0.2s; }
-  a:hover,
-  a:active,
-  a:focus {
+  a:hover, a:active, a:focus {
     text-decoration: underline; }
 
 code, kbd, samp {
@@ -917,7 +899,8 @@ input[type="search"] {
   position: relative;
   z-index: 1;
   transition: -webkit-transform 0.3s ease;
-  transition: transform 0.3s ease; }
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease; }
   .nav-open .site {
     position: relative;
     z-index: 2;
@@ -947,9 +930,7 @@ input[type="search"] {
   border-top: 1px solid #E0E0E0; }
   .site-footer a {
     color: inherit; }
-    .site-footer a:hover,
-    .site-footer a:active,
-    .site-footer a:focus {
+    .site-footer a:hover, .site-footer a:active, .site-footer a:focus {
       color: #424242; }
 
 .site-header {
@@ -999,15 +980,13 @@ input[type="search"] {
     line-height: 48px;
     padding: 0 12px;
     opacity: 0.55; }
-    #primary-menu .menu-item > a:hover,
-    #primary-menu .menu-item > a:active,
-    #primary-menu .menu-item > a:focus,
+    #primary-menu .menu-item > a:hover, #primary-menu .menu-item > a:active, #primary-menu .menu-item > a:focus,
     #primary-menu--cloned .menu-item > a:hover,
     #primary-menu--cloned .menu-item > a:active,
     #primary-menu--cloned .menu-item > a:focus {
       opacity: 1; }
-  .main-navigation--cloned #primary-menu .menu-item > a,
-  .main-navigation--cloned #primary-menu--cloned .menu-item > a {
+  .main-navigation--cloned #primary-menu .menu-item > a, .main-navigation--cloned
+  #primary-menu--cloned .menu-item > a {
     color: #424242; }
 
 #primary-menu .current-menu-item > a,
@@ -1047,9 +1026,7 @@ input[type="search"] {
   line-height: 48px;
   padding: 0 12px;
   opacity: 0.65; }
-  #mobile-menu .menu-item > a:hover,
-  #mobile-menu .menu-item > a:active,
-  #mobile-menu .menu-item > a:focus {
+  #mobile-menu .menu-item > a:hover, #mobile-menu .menu-item > a:active, #mobile-menu .menu-item > a:focus {
     opacity: 1; }
 
 #mobile-menu .current-menu-item > a,
@@ -1147,10 +1124,7 @@ input[type="search"] {
   font-size: 30px;
   font-size: 1.875rem;
   line-height: 35px; }
-  .entry-title > a,
-  .entry-title > a:hover,
-  .entry-title > a:active,
-  .entry-title > a:focus {
+  .entry-title > a, .entry-title > a:hover, .entry-title > a:active, .entry-title > a:focus {
     text-decoration: none; }
   .condensed .entry-title {
     font-size: 24px;
@@ -1166,16 +1140,11 @@ input[type="search"] {
   margin-bottom: 24px; }
   .entry-meta a {
     color: #757575; }
-    .entry-meta a:hover,
-    .entry-meta a:active,
-    .entry-meta a:focus {
+    .entry-meta a:hover, .entry-meta a:active, .entry-meta a:focus {
       color: #424242; }
   .cover .entry-meta {
     color: #fff; }
-    .cover .entry-meta a,
-    .cover .entry-meta a:hover,
-    .cover .entry-meta a:active,
-    .cover .entry-meta a:focus {
+    .cover .entry-meta a, .cover .entry-meta a:hover, .cover .entry-meta a:active, .cover .entry-meta a:focus {
       color: #fff; }
 
 .entry-tags li:not(:last-child) {
@@ -1351,15 +1320,12 @@ div.wpcf7-validation-errors {
 .list-ui,
 #mobile-menu {
   border-top-width: 0; }
-  .list-ui > li,
-  #mobile-menu > li {
+  .list-ui > li, #mobile-menu > li {
     padding-left: 0;
     padding-right: 0; }
-    .list-ui > li:first-child,
-    #mobile-menu > li:first-child {
+    .list-ui > li:first-child, #mobile-menu > li:first-child {
       padding-top: 0; }
-    .list-ui > li:last-child,
-    #mobile-menu > li:last-child {
+    .list-ui > li:last-child, #mobile-menu > li:last-child {
       border-bottom-width: 0;
       padding-bottom: 0; }
 
@@ -1387,9 +1353,7 @@ div.wpcf7-validation-errors {
     font-size: 24px;
     font-size: 1.5rem;
     line-height: 48px; }
-    #social-menu li:hover,
-    #social-menu li:active,
-    #social-menu li:focus {
+    #social-menu li:hover, #social-menu li:active, #social-menu li:focus {
       color: #424242; }
     #social-menu li a {
       position: absolute;
@@ -1451,6 +1415,14 @@ div.wpcf7-validation-errors {
 
 .link-share-email {
   background-color: #a0a0a5; }
+
+/*------------------------------------*    #FEATURED POSTS (homepage posts)
+\*------------------------------------*/
+.featured-posts li:not(:last-child) {
+  margin-bottom: 24px; }
+  @media screen and (min-width: 64em) {
+    .featured-posts li:not(:last-child) {
+      margin-bottom: 48px; } }
 
 /*------------------------------------*    #CLEARFIX
 \*------------------------------------*/
