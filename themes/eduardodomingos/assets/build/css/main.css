@@ -1070,7 +1070,7 @@ input[type="search"] {
 /*------------------------------------*    #BOXES
 \*------------------------------------*/
 .box {
-  padding: 24px 24px 48px; }
+  padding: 24px 24px 32px; }
 
 .box--highlight {
   background-color: #fff; }
@@ -1136,14 +1136,14 @@ input[type="search"] {
   font-size: 14px;
   font-size: 0.875rem;
   line-height: 1.7142857143;
-  color: #757575;
-  margin-bottom: 24px; }
+  color: #757575; }
   .entry-meta a {
     color: #757575; }
     .entry-meta a:hover, .entry-meta a:active, .entry-meta a:focus {
       color: #424242; }
   .cover .entry-meta {
-    color: #fff; }
+    color: #fff;
+    margin-bottom: 24px; }
     .cover .entry-meta a, .cover .entry-meta a:hover, .cover .entry-meta a:active, .cover .entry-meta a:focus {
       color: #fff; }
 
@@ -1418,10 +1418,10 @@ div.wpcf7-validation-errors {
 
 /*------------------------------------*    #FEATURED POSTS (homepage posts)
 \*------------------------------------*/
-.featured-posts li:not(:last-child) {
+.featured-posts .featured-post:not(:last-child) {
   margin-bottom: 24px; }
   @media screen and (min-width: 64em) {
-    .featured-posts li:not(:last-child) {
+    .featured-posts .featured-post:not(:last-child) {
       margin-bottom: 48px; } }
 
 /*------------------------------------*    #CLEARFIX
