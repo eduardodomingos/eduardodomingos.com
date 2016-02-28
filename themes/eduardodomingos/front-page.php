@@ -69,7 +69,7 @@ get_header(); ?>
                                 echo '<ul class="list-bare">';
                                 while( $query->have_posts() ) {
                                     $query->the_post();
-                                    echo '<li>';
+                                    echo '<li class="featured-post">';
                                     $featured_image_4x1 = get_field('featured_image_4x1');
                                     $featured_image_4x1_url = $featured_image_4x1['url'];
                                     $featured_image_4x1_alt = $featured_image_4x1['alt'];
