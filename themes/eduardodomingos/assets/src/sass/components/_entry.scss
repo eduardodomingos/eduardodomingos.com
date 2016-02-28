@@ -19,7 +19,6 @@
 .entry-meta {
     @include font-size(14px);
     color: $color-text-secondary;
-    margin-bottom: $spacing-unit;
     a {
         color: $color-link-secondary;
         @include attention() {
@@ -29,6 +28,7 @@
 
     .cover & {
         color: #fff;
+        margin-bottom: $spacing-unit;
         a {
             @include attention(true) {
                 color: #fff;
