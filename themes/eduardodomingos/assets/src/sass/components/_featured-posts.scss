@@ -2,7 +2,7 @@
     #FEATURED POSTS (homepage posts)
 \*------------------------------------*/
 
-.featured-posts li:not(:last-child) {
+.featured-posts .featured-post:not(:last-child) {
 	margin-bottom: $spacing-unit;
 	@include media-query(desk) {
         margin-bottom: $spacing-unit--large;
