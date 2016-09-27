@@ -316,6 +316,7 @@ class acf_field_image_crop extends acf_field_image {
         // vars
         $div_atts = array(
             'class'                 => 'acf-image-uploader acf-cf acf-image-crop',
+            'data-field-settings'   => json_encode($field),
             'data-crop_type'        => $field['crop_type'],
             'data-target_size'      => $field['target_size'],
             'data-width'            => $width,
@@ -373,7 +374,7 @@ class acf_field_image_crop extends acf_field_image {
         </div>
     </div>
     <div class="view hide-if-value">
-        <p><?php _e('No image selected','acf'); ?> <a data-name="add" class="acf-button" href="#"><?php _e('Add Image','acf'); ?></a></p>
+        <p><?php _e('No image selected','acf'); ?> <a data-name="add" class="acf-button button" href="#"><?php _e('Add Image','acf'); ?></a></p>
     </div>
 </div>
 <?php
@@ -543,7 +544,8 @@ class acf_field_image_crop extends acf_field_image {
             $originalFileExtension = array_pop($originalFileName);
 
             // Generate new base filename
-            $targetFileName = implode('.', $originalFileName) . '_' . $targetW . 'x' . $targetH . '_acf_cropped'  . '.' . $originalFileExtension;
+            $targetFileName = implode('.', $originalFileName) . '_' . $targetW . 'x' . $targetH . apply_filters('acf-image-crop/filename_postfix', '_acf_cropped')  . '.' . $originalFileExtension;
+
 
             // Generate target path new file using existing media library
             $targetFilePath = $mediaDir['path'] . '/' . wp_unique_filename( $mediaDir['path'], $targetFileName);
@@ -737,9 +739,8 @@ class acf_field_image_crop extends acf_field_image {
 // added
 // a function that sets theoptions value to false
     function validateImageCropSettingsSection($input) {
-        $input['hide_cropped'] = ( $input['hide_cropped'] == true ? true : false );
-        $input['retina_mode'] = ( $input['retina_mode'] == true ? true : false );
-
+        $input['hide_cropped'] =    ( isset( $input['hide_cropped'] ) && $input['hide_cropped'] == true ? true : false );
+        $input['retina_mode'] =     ( isset( $input['retina_mode'] ) && $input['retina_mode'] == true ? true : false );
         return $input;
     }
 // added END

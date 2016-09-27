@@ -2,8 +2,8 @@
 /*
 Plugin Name: Media File Renamer
 Plugin URI: http://www.meow.fr
-Description: Renames media files automatically based on their titles and updates the references.
-Version: 2.6.3
+Description: Auto-rename the files when titles are modified and update and the references (links). Manual Rename is a Pro option. Please read the description.
+Version: 2.7.8
 Author: Jordy Meow
 Author URI: http://www.meow.fr
 Text Domain: media-file-renamer
@@ -26,7 +26,7 @@ class Meow_MediaFileRenamer {
 	}
 
 	function init() {
-		require( 'jordy_meow_footer.php' );
+		require( 'meow_footer.php' );
 		load_plugin_textdomain( 'media-file-renamer', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 		add_action( 'admin_head', array( $this, 'admin_head' ) );
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
@@ -117,6 +117,7 @@ class Meow_MediaFileRenamer {
 	}
 
 	function manage_media_custom_column( $column_name, $id ) {
+		$paged = isset( $_GET['paged'] ) ? ( '&paged=' . $_GET['paged'] ) : "";
 		if ( $column_name == 'mfrh_column' ) {
 			$check = $this->check_attachment( $id, $output );
 			if ( $check )
@@ -124,12 +125,12 @@ class Meow_MediaFileRenamer {
 			else if ( $output['manual'] ) {
 				echo "<span title='" . __( 'Manually renamed.', 'media-file-renamer' ) . "' style='font-size: 24px; color: #36B15C;' class='dashicons dashicons-yes'></span>";
 				$page = isset( $_GET['page'] ) ? ( '&page=' . $_GET['page'] ) : "";
-				echo "<a title='" . __( 'Locked to manual only. Click to unlock it.', 'media-file-renamer' ) . "' href='?" . $page . "&mfrh_unlock=" . $id . "'><span style='color: #36B15C; font-size: 20px; margin-top: 0px;' class='dashicons dashicons-lock'></span></a>";
+				echo "<a title='" . __( 'Locked to manual only. Click to unlock it.', 'media-file-renamer' ) . "' href='?" . $page . "&mfrh_unlock=" . $id . $paged . "'><span style='color: #36B15C; font-size: 20px; margin-top: 0px;' class='dashicons dashicons-lock'></span></a>";
 			}
 			else {
 				echo "<span title='" . __( 'Automatically renamed.', 'media-file-renamer' ) . "'style='font-size: 24px; color: #36B15C;' class='dashicons dashicons-yes'></span>";
 				$page = isset( $_GET['page'] ) ? ( '&page=' . $_GET['page'] ) : "";
-				echo "<a title='" . __( 'Click to lock it to manual only.', 'media-file-renamer' ) . "' href='?" . $page . "&mfrh_lock=" . $id . "'><span style='font-size: 16px; margin-top: 1px;' class='dashicons dashicons-unlock'></span></a>";
+				echo "<a title='" . __( 'Click to lock it to manual only.', 'media-file-renamer' ) . "' href='?" . $page . "&mfrh_lock=" . $id . $paged . "'><span style='font-size: 16px; margin-top: 1px;' class='dashicons dashicons-unlock'></span></a>";
 			}
 		}
 	}
@@ -349,6 +350,7 @@ class Meow_MediaFileRenamer {
 
 		// Send info to the requester function
 		$output['post_id'] = $post['ID'];
+		$output['post_name'] = $post['post_name'];
 		$output['post_title'] = $post['post_title'];
 		$output['current_filename'] = $path_parts['basename'];
 		$output['desired_filename'] = $desired_filename;
@@ -419,11 +421,12 @@ class Meow_MediaFileRenamer {
 	}
 
 	function rename_media_files() {
+		$hide_ads = $this->getoption( 'hide_ads', 'mfrh_basics', false );
 		?>
 		<div class='wrap'>
-		<?php jordy_meow_donation(); ?>
+		<?php $hide_ads ? "" : jordy_meow_donation(); ?>
 		<div id="icon-upload" class="icon32"><br></div>
-		<h1>Media File Renamer <?php by_jordy_meow(); ?></h1>
+		<h1>Media File Renamer <?php by_jordy_meow( $hide_ads ); ?></h1>
 
 		<?php
 		$checkFiles = null;
@@ -450,8 +453,16 @@ class Meow_MediaFileRenamer {
 			<span id='mfrh_progression'></span>
 		</div>
 
+		<?php
+		if ( !$this->is_pro() && !$hide_ads ) {
+		  echo '<div class="updated"><p>';
+		  echo __( '<b>The Pro version</b> of the plugin allows you to <b>rename based on the title of the post</b> (product or whatever else) you media is attached to, <b>rename manually</b>, use <b>numbered files</b> (by adding a counter if the filenames are similar), <b>sync the title with your ALT text</b>, UTF8 support (if you need it), a force rename (to repair a broken install), and, more importantly, <b>supports the developer</b> :) The serial key for the Pro has to be inserted in your Settings > File Renamer > Pro tab. Thank you :)<br /><br /><a class="button-primary" href="http://apps.meow.fr/media-file-renamer/" target="_blank">Get the serial key for the Pro</a>', 'media-file-renamer' );
+		  echo '</p></div>';
+		}
+		?>
+
 		<p>
-			<b>There are <span class='mfrh-flagged' style='color: red;'><?php _e( $flagged ); ?></span> media files flagged for auto-renaming out of <?php _e( $total ); ?> in total.</b> Those are the files that couldn't be renamed on the fly when their names were updated. You can now rename those flagged media, or rename all of them (which will unlock them all and force their renaming). <span style='color: red;'>Please backup your WordPress upload folder and database before using these functions.</span>
+			<b>There are <span class='mfrh-flagged' style='color: red;'><?php _e( $flagged ); ?></span> media files flagged for auto-renaming out of <?php _e( $total ); ?> in total.</b> Those are the files that couldn't be renamed on the fly when their names were updated. You can now rename those flagged media, or rename all of them (which will unlock them all and force their renaming). <span style='color: red; font-weight: bold;'>Please backup your uploads folder + DB before using this.</span>
 		</p>
 
 		<table class='wp-list-table widefat fixed media' style='margin-top: 15px;'>
@@ -475,7 +486,7 @@ class Meow_MediaFileRenamer {
 					}
 					else if ( isset( $_GET['mfrh_scancheck'] ) && ( $checkFiles == null || count( $checkFiles ) < 1 ) ) {
 						?><tr><td colspan='4'><div style='width: 100%; margin-top: 15px; margin-bottom: 15px; text-align: center;'>
-							<div style='margin-top: 15px;'><?php _e( 'There are no issues.<br />Cool! Let\'s go visit <a href=\'http://www.totorotimes.com\'>Totoro Times</a> :)', 'media-file-renamer' ); ?></div>
+							<div style='margin-top: 15px;'><?php _e( 'There are no issues. Cool!<br />Let\'s go visit <a target="_blank" href=\'http://jordymeow.com\'>The Offbeat Guide of Japan</a> :)', 'media-file-renamer' ); ?></div>
 						</div></td><?php
 					}
 					else if ( $checkFiles == null ) {
@@ -530,7 +541,9 @@ class Meow_MediaFileRenamer {
 	 */
 
 	function edit_attachment( $post_ID ) {
+		$this->log( '[edit_attachment]' );
 		$this->check_attachment( $post_ID, $output );
+		// $output['post_name']
 	}
 
 	function media_send_to_editor( $html, $attachment_id, $attachment ) {
@@ -560,6 +573,7 @@ class Meow_MediaFileRenamer {
 	}
 
 	function attachment_save( $post, $attachment ) {
+		$this->log( '[attachment_save]' );
 		$auto_rename = $this->getoption( 'auto_rename', 'mfrh_basics', 'media_title' );
 		$info = pathinfo( get_attached_file( $post['ID'] ) );
 		$basename = $info['basename'];
@@ -615,39 +629,31 @@ class Meow_MediaFileRenamer {
 	}
 
 	function validate_pro( $subscr_id ) {
-		if ( empty( $subscr_id ) ) {
-			delete_option( 'mfrh_pro_serial', "" );
-			delete_option( 'mfrh_pro_status', "" );
-			set_transient( 'mfrh_validated', false, 0 );
+		delete_option( 'mfrh_pro_serial', "" );
+		delete_option( 'mfrh_pro_status', "" );
+		set_transient( 'mfrh_validated', false, 0 );
+		if ( empty( $subscr_id ) )
 			return false;
-		}
-		require_once ABSPATH . WPINC . '/class-IXR.php';
-		require_once ABSPATH . WPINC . '/class-wp-http-ixr-client.php';
-		$client = new WP_HTTP_IXR_Client( 'http://apps.meow.fr/xmlrpc.php' );
-		$client->useragent = 'MeowApps';
-		if ( !$client->query( 'meow_sales.auth', $subscr_id, 'media-file-renamer', get_site_url() ) ) {
-			update_option( 'mfrh_pro_serial', "" );
-			update_option( 'mfrh_pro_status', "A network error: " . $client->getErrorMessage() );
-			set_transient( 'mfrh_validated', false, 0 );
-			return false;
-		}
-		$post = $client->getResponse();
-		if ( !$post['success'] ) {
-			if ( $post['message_code'] == "NO_SUBSCRIPTION" ) {
-				$status = __( "Your serial does not seem right." );
-			}
-			else if ( $post['message_code'] == "NOT_ACTIVE" ) {
-				$status = __( "Your subscription is not active." );
-			}
-			else if ( $post['message_code'] == "TOO_MANY_URLS" ) {
-				$status = __( "Too many URLs are linked to your subscription." );
-			}
-			else {
-				$status = "There is a problem with your subscription.";
-			}
-			update_option( 'mfrh_pro_serial', "" );
+		$response = wp_remote_post( 'http://apps.meow.fr/wp-json/meow/v1/auth', array(
+			'body' => array( 'subscr_id' => $subscr_id, 'item' => 'media-file-renamer', 'url' => get_site_url() )
+		) );
+		$body = is_array( $response ) ? $response['body'] : null;
+		$post = @json_decode( $body );
+		if ( !$post || ( property_exists( $post, 'code' ) ) ) {
+			$status = __( "There was an error while validating the serial.<br />Please contact <a target='_blank' href='http://apps.meow.fr/contact/'>Meow Apps</a> and mention the following log.<br /><br /><small>" . print_r( $response, true ) . "</small>" );
 			update_option( 'mfrh_pro_status', $status );
-			set_transient( 'mfrh_validated', false, 0 );
+			return false;
+		}
+		if ( !$post->success ) {
+			if ( $post->message_code == "NO_SUBSCRIPTION" )
+				$status = __( "Your serial does not seem right." );
+			else if ( $post->message_code == "NOT_ACTIVE" )
+				$status = __( "Your subscription is not active." );
+			else if ( $post->message_code == "TOO_MANY_URLS" )
+				$status = __( "Too many URLs are linked to your subscription." );
+			else
+				$status = "There is a problem with your subscription.";
+			update_option( 'mfrh_pro_status', $status );
 			return false;
 		}
 		set_transient( 'mfrh_validated', $subscr_id, 3600 * 24 * 100 );
@@ -665,14 +671,15 @@ class Meow_MediaFileRenamer {
 
 	function settings_page() {
 		global $mfrh_settings_api;
+		$hide_ads = $this->getoption( 'hide_ads', 'mfrh_basics', false );
 		echo '<div class="wrap">';
-			jordy_meow_donation(true);
+		$hide_ads ? "" : jordy_meow_donation( true );
 		echo "<div id='icon-options-general' class='icon32'><br></div><h1>Media File Renamer";
-			by_jordy_meow();
-			echo "</h1>";
-			$mfrh_settings_api->show_navigation();
-			$mfrh_settings_api->show_forms();
-			echo '</div>';
+		by_jordy_meow( $hide_ads );
+		echo "</h1>";
+		$mfrh_settings_api->show_navigation();
+		$mfrh_settings_api->show_forms();
+		echo '</div>';
 		jordy_meow_footer();
 	}
 
@@ -723,7 +730,7 @@ class Meow_MediaFileRenamer {
 		// Default Rename GUID
 		$rename_guid = $this->getoption( 'rename_guid', 'mfrh_basics', null );
 		if ( $rename_guid === null )
-				$this->setoption( 'rename_guid', 'mfrh_basics', 'on' );
+				$this->setoption( 'rename_guid', 'mfrh_basics', 'off' );
 
 		// Default Update Posts
 		$update_posts = $this->getoption( 'update_posts', 'mfrh_basics', null );
@@ -739,6 +746,11 @@ class Meow_MediaFileRenamer {
 		$update_postmeta = $this->getoption( 'utf8_filename', 'mfrh_basics', null );
 		if ( $update_postmeta === null )
 				$this->setoption( 'utf8_filename', 'mfrh_basics', 'off' );
+
+		// Force Rename
+		$force_rename = $this->getoption( 'force_rename', 'mfrh_basics', null );
+		if ( $force_rename === null )
+				$this->setoption( 'force_rename', 'mfrh_basics', 'off' );
 
 		if ( isset( $_POST ) && isset( $_POST['mfrh_pro'] ) )
 				$this->validate_pro( $_POST['mfrh_pro']['subscr_id'] );
@@ -810,10 +822,10 @@ class Meow_MediaFileRenamer {
 						'default' => true
 				), array(
 						'name' => 'rename_guid',
-						'label' => __( 'Rename GUID<br /><small>(aka "File name")</small>', 'media-file-renamer' ),
-						'desc' => __( 'The GUID will be renamed like the new filename.<br /><small>Better to keep this un-checked. Have a look a the FAQ.</small>', 'media-file-renamer' ),
+						'label' => __( 'Rename GUID<br /><small></small>', 'media-file-renamer' ),
+						'desc' => __( 'The GUID will be renamed like the new filename.<br /><small>Better to keep this un-checked.</small>', 'media-file-renamer' ),
 						'type' => 'checkbox',
-						'default' => false
+						'default' => true
 				), array(
 						'name' => 'sync_alt',
 						'label' => __( 'Alt. Text = Title (Pro)<br /><small>Sync Alternative Text</small>', 'media-file-renamer' ),
@@ -838,6 +850,12 @@ class Meow_MediaFileRenamer {
 						'type' => 'checkbox',
 						'default' => false
 				), array(
+						'name' => 'force_rename',
+						'label' => __( 'Force Rename (Pro)', 'media-file-renamer' ),
+						'desc' => __( 'Update the references to the file even if the file renaming itself was not successful.<br /><small>You might want to use that option if your install is broken and you are trying to link your Media to files for which the filenames has been altered (after a migration for exemple)</small>', 'media-file-renamer' ),
+						'type' => 'checkbox',
+						'default' => false
+				), array(
 						'name' => 'log',
 						'label' => __( 'Logs', 'media-file-renamer' ),
 						'desc' => __( 'Simple logging that explains which actions has been run. The file is <a target="_blank" href="' . plugins_url("media-file-renamer") . '/media-file-renamer.log">media-file-renamer.log</a>.', 'media-file-renamer' ),
@@ -847,6 +865,17 @@ class Meow_MediaFileRenamer {
 						'name' => 'logsql',
 						'label' => __( 'SQL Logs (Pro)<br />+ Revert SQL', 'media-file-renamer' ),
 						'desc' => __( 'The files <a target="_blank" href="' . plugins_url("media-file-renamer") . '/mfrh_sql.log">mfrh_sql.log</a> and <a target="_blank" href="' . plugins_url("media-file-renamer") . '/mfrh_sql_revert.log">mfrh_sql_revert.log</a> will be created and they will include the raw SQL queries which were run by the plugin. If there is an issue, the revert file can help you reverting the changes more easily. <br /><small>This feature is only for Pro users (check the Pro tab).</small>', 'media-file-renamer' ),
+						'type' => 'checkbox',
+						'default' => false
+				), array(
+						'name' => 'bonus',
+						'label' => '',
+						'desc' => __( '<h1>UI</h1><small>Options to make the UI yours :)</b></small>', 'media-file-renamer' ),
+						'type' => 'html'
+				), array(
+						'name' => 'hide_ads',
+						'label' => __( 'Hide Ads & Info', 'media-file-renamer' ),
+						'desc' => __( '<small>Hide the ads, the Flattr button and the information about the Pro.</small>', 'media-file-renamer' ),
 						'type' => 'checkbox',
 						'default' => false
 				)
@@ -885,6 +914,10 @@ class Meow_MediaFileRenamer {
 	function new_filename( $media, $title, $forceFilename = null ) {
 		if ( $forceFilename )
 			$forceFilename = preg_replace( '/\\.[^.\\s]{3,4}$/', '', trim( $forceFilename ) );
+		// Clean the title
+		$title = str_replace( ".jpg", "", $title );
+		$title = str_replace( ".png", "", $title );
+		$title = str_replace( "'s", "", $title );
 		$force = !empty( $forceFilename );
 		$old_filepath = get_attached_file( $media['ID'] );
 		$path_parts = pathinfo( $old_filepath );
@@ -893,20 +926,19 @@ class Meow_MediaFileRenamer {
 		// this properly with thorough testing later.
 		//$ext = str_replace( 'jpeg', 'jpg', $path_parts['extension'] ); // In case of a jpeg extension, rename it to jpg
 		$ext = $path_parts['extension'];
-
 		if ( $force )
-			$sanitized_media_title = $forceFilename;
+			$new_filename = $forceFilename;
 		else {
 			$utf8_filename = $this->getoption( 'utf8_filename', 'mfrh_basics', null ) && $this->is_pro();
-			$sanitized_media_title = $utf8_filename ? sanitize_file_name( $title ) :
+			$new_filename = $utf8_filename ? sanitize_file_name( $title ) :
 				str_replace( "%", "-", sanitize_title( $title ) );
 		}
-		if ( empty( $sanitized_media_title ) )
-			$sanitized_media_title = "empty";
-		$sanitized_media_title = $sanitized_media_title . '.' . $ext;
+		if ( empty( $new_filename ) )
+			$new_filename = "empty";
+		$new_filename = $new_filename . '.' . $ext;
 		if ( !$forceFilename )
-			$sanitized_media_title = apply_filters( 'mfrh_new_filename', $sanitized_media_title, $old_filename, $media );
-		return $sanitized_media_title;
+			$new_filename = apply_filters( 'mfrh_new_filename', $new_filename, $old_filename, $media );
+		return $new_filename;
 	}
 
 	// Only replace the first occurence
@@ -1004,9 +1036,11 @@ class Meow_MediaFileRenamer {
 			return $post;
 		}
 
+		$force_rename = $this->getoption( 'force_rename', 'mfrh_basics', false ) && $this->is_pro();
+
 		// NEW DESTINATION FILES ALREADY EXISTS - WE DON'T DO NOTHING
 		$new_filepath = trailingslashit( $directory ) . $sanitized_media_title;
-		if ( file_exists( $directory . "/" . $sanitized_media_title ) ) {
+		if ( !$force_rename && file_exists( $directory . "/" . $sanitized_media_title ) ) {
 
 			$desired = false;
 			$is_numbered = $this->getoption( 'numbered_files', 'mfrh_basics', false );
@@ -1034,7 +1068,7 @@ class Meow_MediaFileRenamer {
 
 		// Rename the main media file.
 		try {
-			if ( !file_exists( $old_filepath ) || !rename( $old_filepath, $new_filepath ) ) {
+			if ( ( !file_exists( $old_filepath ) || !rename( $old_filepath, $new_filepath ) ) && !$force_rename ) {
 				$this->log( "The file couldn't be renamed from $old_filepath to $new_filepath." );
 				return $post;
 			}
@@ -1048,9 +1082,10 @@ class Meow_MediaFileRenamer {
 		// Filenames without extensions
 		$noext_old_filename = $this->str_replace( '.' . $old_ext, '', $old_filename );
 		$noext_new_filename = $this->str_replace( '.' . $ext, '', $sanitized_media_title );
+		$this->log( "Files with no extensions: $noext_old_filename and $noext_new_filename." );
 
 		// Update the attachment meta
-		if ($meta) {
+		if ( $meta ) {
 			$meta['file'] = $this->str_replace( $noext_old_filename, $noext_new_filename, $meta['file'] );
 			if ( isset( $meta["url"] ) && $meta["url"] != "" && count( $meta["url"] ) > 4 )
 				$meta["url"] = $this->str_replace( $noext_old_filename, $noext_new_filename, $meta["url"] );
@@ -1076,19 +1111,19 @@ class Meow_MediaFileRenamer {
 					$orig_image_data = wp_get_attachment_image_src( $post['ID'], $size );
 					$orig_image_urls[$size] = $orig_image_data[0];
 					// ak: Double check files exist before trying to rename.
-					if ( file_exists( $meta_old_filepath ) && ( ( !file_exists( $meta_new_filepath ) )
-						|| is_writable( $meta_new_filepath ) ) ) {
+					if ( $force_rename || ( file_exists( $meta_old_filepath ) && ( ( !file_exists( $meta_new_filepath ) )
+						|| is_writable( $meta_new_filepath ) ) ) ) {
 						// WP Retina 2x is detected, let's rename those files as well
 						if ( function_exists( 'wr2x_generate_images' ) ) {
 							$wr2x_old_filepath = $this->str_replace( '.' . $ext, '@2x.' . $ext, $meta_old_filepath );
 							$wr2x_new_filepath = $this->str_replace( '.' . $ext, '@2x.' . $ext, $meta_new_filepath );
 							if ( file_exists( $wr2x_old_filepath ) && ( (!file_exists( $wr2x_new_filepath ) ) || is_writable( $wr2x_new_filepath ) ) ) {
-								rename( $wr2x_old_filepath, $wr2x_new_filepath );
+								@rename( $wr2x_old_filepath, $wr2x_new_filepath );
 								$this->log( "Retina file $wr2x_old_filepath renamed to $wr2x_new_filepath." );
 								do_action( 'mfrh_path_renamed', $post, $wr2x_old_filepath, $wr2x_new_filepath );
 							}
 						}
-						rename( $meta_old_filepath, $meta_new_filepath );
+						@rename( $meta_old_filepath, $meta_new_filepath );
 						$meta['sizes'][$size]['file'] = $meta_new_filename;
 						$this->log( "File $meta_old_filepath renamed to $meta_new_filepath." );
 						do_action( 'mfrh_path_renamed', $post, $meta_old_filepath, $meta_new_filepath );
@@ -1132,6 +1167,15 @@ class Meow_MediaFileRenamer {
 			do_action( 'mfrh_url_renamed', $post, $orig_attachment_url, $new_attachment_url );
 		}
 
+		// SLUG
+		if ( $this->getoption( "rename_slug", "mfrh_basics", true ) ) {
+			$oldslug = $post['post_name'];
+			$info = pathinfo( $new_filepath );
+			$newslug = preg_replace( '/\\.[^.\\s]{3,4}$/', '', $info['basename'] );
+			$post['post_name'] = $newslug;
+			$this->log( "Slug $oldslug set to $newslug." );
+		}
+
 		// HTTP REFERER set to the new media link
 		if ( isset( $_REQUEST['_wp_original_http_referer'] ) && strpos( $_REQUEST['_wp_original_http_referer'], '/wp-admin/' ) === false ) {
 			$_REQUEST['_wp_original_http_referer'] = get_permalink( $post['ID'] );
@@ -1159,26 +1203,11 @@ class Meow_MediaFileRenamer {
 			add_action( 'mfrh_url_renamed', array( $this, 'action_update_posts' ), 10, 3 );
 		if ( $this->getoption( "update_postmeta", "mfrh_basics", true ) )
 			add_action( 'mfrh_url_renamed', array( $this, 'action_update_postmeta' ), 10, 3 );
-		if ( $this->getoption( "rename_slug", "mfrh_basics", true ) )
-			add_action( 'mfrh_media_renamed', array( $this, 'action_update_slug' ), 10, 3 );
 		if ( $this->getoption( "sync_alt", "mfrh_basics", false ) && $this->is_pro() )
 			add_action( 'mfrh_media_renamed', array( $this, 'action_sync_alt' ), 10, 3 );
-		if ( $this->getoption( "rename_guid", "mfrh_basics", false ) )
+		if ( $this->getoption( "rename_guid", "mfrh_basics", false ) ) {
 			add_action( 'mfrh_media_renamed', array( $this, 'action_rename_guid' ), 10, 3 );
-	}
-
-	// Slug update
-	function action_update_slug( $post, $old_filepath, $new_filepath ) {
-		$oldslug = $post['post_name'];
-		$info = pathinfo( $new_filepath );
-		$newslug = preg_replace( '/\\.[^.\\s]{3,4}$/', '', $info['basename'] );
-		global $wpdb;
-		$query = $wpdb->prepare( "UPDATE $wpdb->posts SET post_name = '%s' WHERE ID = '%d'", $newslug,  $post['ID'] );
-		$query_revert = $wpdb->prepare( "UPDATE $wpdb->posts SET post_name = '%s' WHERE ID = '%d'", $oldslug,  $post['ID'] );
-		$this->log_sql( $query, $query_revert );
-		$wpdb->query( $query );
-		clean_post_cache( $post['ID'] );
-		$this->log( "Slug $oldslug renamed into $newslug." );
+		}
 	}
 
 	function action_sync_alt( $post, $old_filepath, $new_filepath ) {
@@ -1228,5 +1257,5 @@ class Meow_MediaFileRenamer {
 
 if ( is_admin() ) {
 	$mfrh = new Meow_MediaFileRenamer();
-	include( 'mfrh_filters.php' );
+	include( 'mfrh_custom.php' );
 }
